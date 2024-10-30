@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 17:16:18 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/29 23:06:05 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/10/30 00:35:26 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/10/30 01:41:51 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+int main(void) 
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-		return (c);
-	return (0);
+    return (0);
 }
