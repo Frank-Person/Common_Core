@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 01:42:40 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/30 02:27:26 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:57:53 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
 {
-	size_t	ss;
+	size_t	sl;
 
-	ss = ft_strlen(src);
-	if (ss < dsize - 1)
-		ft_memcpy(dst, src, ss + 1);
-	else if (dsize)
+	if (!dst || !src)
+		return (0);
+	sl = ft_strlen(src);
+	if (dsize == 0)
+		return (sl);
+	if (sl + 1 < dsize)
+		ft_memcpy(dst, src, sl + 1);
+	else
 	{
 		ft_memcpy(dst, src, dsize - 1);
 		dst[dsize - 1] = 0;
 	}
-	return (ss);
+	return (sl);
 }

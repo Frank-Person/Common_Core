@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 02:28:14 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/30 17:59:15 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/10/30 21:57:56 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/10/30 23:37:17 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dsize)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	dl;
-	size_t	sl;
+	unsigned char	*t1;
+	unsigned char	*t2;
 
-	if (!dst || !src)
+	if (n == 0)
 		return (0);
-	dl = ft_strlen(dst);
-	sl = ft_strlen(src);
-	if (dl >= dsize)
-		return (dl + sl);
-	if (sl < dsize - dl)
-		ft_memcpy(dst + dl, src, sl + 1);
-	else
+	t1 = (unsigned char *)s1;
+	t2 = (unsigned char *)s2;
+	while (*t1 && *t2 && *t1 == *t2 && n)
 	{
-		ft_memcpy(dst + dl, src, dsize - dl - 1);
-		dst[dsize - 1] = 0;
+		t1++;
+		t2++;
+		n--;
 	}
-	return (dl + sl);
+	return (*t1 - *t2);
 }
