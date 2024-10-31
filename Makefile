@@ -6,31 +6,34 @@
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/28 16:27:18 by mrapp-he          #+#    #+#              #
-#    Updated: 2024/10/30 00:37:18 by mrapp-he         ###   ########.fr        #
+#    Updated: 2024/10/31 17:14:42 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 INCLD = libft.h
-SRC = $(wildcard *.c)
+SRC = $(wildcard *.c) #Delete wildcard
 OBJ := $(SRC:%.c=%.o)
-CC = cc
-CCFLGS = -Wall -Wextra -Werror
-CPPFLGS = -I$(INCLD)
+CC = cc -Wall -Wextra -Werror
+CPPFLGS = -I $(INCLD)
 
-all: $(NAME)
+all: $(NAME) test #Delete test
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rcs $(NAME) $(OBJ)
 
 %.o: %.c
-	$(CC) $(CPPFLGS) $(CCFLGS) -o $@ -c $<
+	@$(CC) $(CPPFLGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
-fclean: clean
-	rm -f $(NAME)
+fclean: clean #Delete "rm -f test"
+	@rm -f $(NAME)
+	@rm -f test 
 
 re: fclean all
+
+test: #Delete this rule
+	@$(CC) -lbsd main.c $(NAME) -o test
+	@./test

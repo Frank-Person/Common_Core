@@ -6,19 +6,26 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 23:39:46 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/31 00:09:43 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:04:09 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strnstr(const char *bg, const char *lt, size_t ln)
-{
-	if (!lt)
+{	
+	size_t	ll;
+	
+	ll = ft_strlen(lt);
+	if (!ll)
 		return ((char *)bg);
-	while (ln)
+	ll--;
+	while (*bg && ln)
 	{
-		
+		if (ft_strncmp(bg, lt, ll) == 0)
+				return ((char *)bg);
+		bg++;
+		ln--;
 	}
 	return (NULL);
 }

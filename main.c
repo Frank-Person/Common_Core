@@ -6,11 +6,13 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 00:35:26 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/31 00:06:37 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:04:20 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <bsd/string.h>
 
 void	t_strncmp()
 {
@@ -58,7 +60,10 @@ void	t_strnstr()
 		
 	printf("MF:\n");
 	printf("Looking for %s in %s\n", lt, bg);
-	printf("Found: %s\n", ft_strnstr(bg, lt, ft_strlen(lt)));
+	printf("Found: %s\n", ft_strnstr(bg, lt, ft_strlen(bg)));
+	printf("OF:\n");
+	printf("Looking for %s in %s\n", lt, bg);
+	printf("Found: %s\n", strnstr(bg, lt, ft_strlen(bg)));
 }
 
 int	main()
