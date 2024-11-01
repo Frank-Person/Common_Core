@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 23:43:38 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 19:16:21 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/11/01 20:47:58 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/11/01 20:51:41 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int		i;
-	char	*dup;
-
-	i = -1;
-	dup = malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!dup)
-		return (NULL);
-	while (s[++i])
-		dup[i] = s[i];
-	dup[i] = '\0';
-	return (dup);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', 1);
 }
