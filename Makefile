@@ -6,7 +6,7 @@
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/28 16:27:18 by mrapp-he          #+#    #+#              #
-#    Updated: 2024/11/01 15:05:13 by mrapp-he         ###   ########.fr        #
+#    Updated: 2024/11/01 18:16:43 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ INCLD = libft.h
 SRC = $(wildcard *.c) #Delete wildcard
 OBJ := $(SRC:%.c=%.o)
 CC = cc
-CCFLGS = -Wall -Wextra #-Werror
-CPPFLGS = -I $(INCLD)
+CCFLGS = -Wall -Wextra -Werror
+CPPFLGS = -I . #$(INCLD)
 
-all: $(NAME) test #Delete test
+all: $(NAME) #test #Delete test
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
@@ -31,10 +31,10 @@ clean:
 
 fclean: clean #Delete "rm -f test"
 	@rm -f $(NAME)
-	@rm -f test 
+#	@rm -f test 
 
 re: fclean all
 
-test: #Delete this rule
-	@$(CC) -lbsd main.c $(NAME) -o test
-	@./test
+#test: #Delete this rule
+#	@$(CC) -lbsd main.c $(NAME) -o test
+#	@./test

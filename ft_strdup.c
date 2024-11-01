@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 23:43:38 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/30 00:34:44 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/01 18:24:51 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strdup(const char *s)
 	int		i;
 	char	*dup;
 
-	if (!s)
-		return (NULL);
 	i = -1;
 	dup = malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!dup)

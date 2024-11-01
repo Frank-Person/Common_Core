@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 01:42:40 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/30 17:57:53 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/01 18:23:55 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
 {
 	size_t	sl;
 
-	if (!dst || !src)
-		return (0);
 	sl = ft_strlen(src);
 	if (dsize == 0)
 		return (sl);
