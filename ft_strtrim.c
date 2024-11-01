@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 17:23:42 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 21:24:33 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/11/01 19:58:11 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/11/01 20:31:54 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+char	*ft_strtrim(char const *s1, char const *st)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	
 }
