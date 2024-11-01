@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 19:58:11 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 20:31:54 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/01 21:31:14 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,4 @@
 
 char	*ft_strtrim(char const *s1, char const *st)
 {
-	
 }

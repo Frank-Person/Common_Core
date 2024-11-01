@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:00:27 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/30 18:10:28 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/01 21:46:42 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_toupper(int c)
 {
-	if (ft_isalpha(c) >= 'a')
+	if (c >= 'a' && c <= 'z')
 		return (c - 32);
 	return (c);
 }

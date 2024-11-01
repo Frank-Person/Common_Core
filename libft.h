@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:07:08 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 21:25:33 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/01 22:13:29 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
-char	*ft_strtrim(char const *s1, char const *st);
+//char	*ft_strtrim(char const *s1, char const *st);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strnstr(const char *bg, const char *lt, size_t ln);
-char	*ft_substr(char const *s,  unsigned int strt, size_t ln);
+char	*ft_substr(char const *s, unsigned int strt, size_t ln);
 
 #endif
