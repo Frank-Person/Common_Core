@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 00:35:26 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/31 18:04:20 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/01 02:09:53 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,63 @@ void	t_strnstr()
 	printf("Found: %s\n", strnstr(bg, lt, ft_strlen(bg)));
 }
 
+void	t_atoi()
+{
+	const char	*n = "   \t  \t--++--4256hhh78";
+	const char	*n2 = "\r\n\t    -657487jgjg8";
+
+	printf("MF:\n");
+	printf("1ºCase:\n");
+	printf("String: %s  || Number: %d\n", ft_atoi(n));
+	printf("2ºCase:\n");
+	printf("String: %s  || Number: %d\n", ft_atoi(n2));
+	printf("OF:\n");
+	printf("1ºCase:\n");
+	printf("String: %s  || Number: %d\n", atoi(n));
+	printf("2ºCase:\n");
+	printf("String: %s  || Number: %d\n", atoi(n2));
+}
+
+void	t_calloc()
+{
+	char	*c = ft_calloc(5, 1);
+	char	*c2 = calloc(5, 1);
+	char	*c3 = ft_calloc(4, 0);
+	char	*c4 = calloc(4, 0);
+	int	*n = ft_calloc(3, 4);
+	int	*n2 = calloc(3, 4);
+	int	*n3 = ft_calloc(0, 1);
+	int	*n4 = calloc(0, 1);
+
+	printf("MF:\n");
+	printf("1ºCase:\n");
+	printf("Array: %s\n", c);
+	printf("2ºCase:\n");
+	printf("Array: %s\n", n);
+	printf("3ºCase:\n");
+	printf("Array: %s\n", c3);
+	printf("4ºCase:\n");
+	printf("Array: %s\n", n3);
+	printf("OF:\n");
+	printf("1ºCase:\n");
+	printf("Array: %s\n", c2);
+	printf("2ºCase:\n");
+	printf("Array: %s\n", n2);
+	printf("3ºCase:\n");
+	printf("Array: %s\n", c4);
+	printf("4ºCase:\n");
+	printf("Array: %s\n", n4);
+
+	free(c);
+	free(c2);
+	free(c3);
+	free(c4);
+	free(n);
+	free(n2);
+	free(n3);
+	free(n4);
+}
+
 int	main()
 {
 	t_strncmp();
@@ -75,5 +132,9 @@ int	main()
 	t_memcmp();
 	printf("\n");
 	t_strnstr();
+	printf("\n");
+	t_atoi();
+	printf("\n");
+	t_calloc();
 	return (0);
 }

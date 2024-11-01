@@ -6,7 +6,7 @@
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/28 16:27:18 by mrapp-he          #+#    #+#              #
-#    Updated: 2024/10/31 17:14:42 by mrapp-he         ###   ########.fr        #
+#    Updated: 2024/11/01 02:13:17 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = libft.a
 INCLD = libft.h
 SRC = $(wildcard *.c) #Delete wildcard
 OBJ := $(SRC:%.c=%.o)
-CC = cc -Wall -Wextra -Werror
+CC = cc
+CCFLGS = -Wall -Wextra #-Werror
 CPPFLGS = -I $(INCLD)
 
 all: $(NAME) test #Delete test
@@ -23,7 +24,7 @@ $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
 
 %.o: %.c
-	@$(CC) $(CPPFLGS) -c $< -o $@
+	@$(CC) $(CPPFLGS) $(CCFLGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)
