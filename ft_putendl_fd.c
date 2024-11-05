@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 20:47:58 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 22:20:06 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/02 23:23:20 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_putendl_fd(char *s, int fd)
 {
 	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', 1);
+	ft_putchar_fd('\n', fd);
 }

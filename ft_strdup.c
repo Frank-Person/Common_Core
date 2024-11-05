@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 23:43:38 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 21:25:40 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:11:51 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ char	*ft_strdup(const char *s)
 	char	*dup;
 
 	i = -1;
-	dup = malloc((ft_strlen(s) + 1) * sizeof(char));
+	dup = ft_calloc((ft_strlen(s) + 1), sizeof(char));
 	if (!dup)
 		return (NULL);
 	while (s[++i])
 		dup[i] = s[i];
-	dup[i] = '\0';
 	return (dup);
 }

@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:10:54 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/10/30 22:04:30 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:48:30 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	*ft_strrchr(const char *s, int c)
 	occ = NULL;
 	while (*s)
 	{
-		if (*s == c)
+		if ((unsigned char)*s == (unsigned char)c)
 			occ = (char *)s;
 		s++;
 	}
-	if (c == '\0')
+	if ((unsigned char)c == '\0')
 		return ((char *)s);
 	return (occ);
 }

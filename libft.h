@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:07:08 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 22:13:29 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:45:59 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h> //remove after
 
 int		ft_isprint(int c);
 int		ft_isdigit(int c);
@@ -40,12 +41,15 @@ void	*ft_memmove(void *dst, const void *src, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t dsize);
 size_t	ft_strlen(const char *s);
+char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
-//char	*ft_strtrim(char const *s1, char const *st);
+char	*ft_strtrim(char const *s1, char const *st);
 char	*ft_strjoin(char const *s1, char const *s2);
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strnstr(const char *bg, const char *lt, size_t ln);
 char	*ft_substr(char const *s, unsigned int strt, size_t ln);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 #endif

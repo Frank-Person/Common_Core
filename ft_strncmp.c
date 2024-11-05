@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 20:27:58 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/01 21:56:59 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:21:55 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (n == 0)
-		return (0);
-	while (*s1 && *s2 && *s1 == *s2 && n)
+	while (*s1 && *s2 && *s1 == *s2 && n--)
 	{
 		s1++;
 		s2++;
-		n--;
 	}
-	return (*s1 - *s2);
+	if (n == 0)
+		return (0);
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

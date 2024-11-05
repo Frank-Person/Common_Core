@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 22:34:56 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/05 19:41:25 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/11/05 17:44:45 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/11/05 18:56:26 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+char	*ft_itoa(int n)
 {
-	unsigned char	*t;
+	char	*r;
+	int		c;
+	int		m;
+	long	nb;
 
-	t = (unsigned char *)s;
-	while (n--)
-		*t++ = c;
-	return (s);
+	c = 0;
+	m = 10;
+	nb = n;
+	if (nb < 0)
+	{
+		nb = -nb;
+		c++;
+	}
+	while (nb % m < nb)
+	{
+		c++;
+		m *= 10;
+	}
+	r = ft_calloc(c + 1, sizeof(char));
+	if (!r)
+		return (NULL);
+	return (r);
 }
