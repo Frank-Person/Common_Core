@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 00:38:25 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/06 16:11:08 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/11/12 17:38:15 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/11/13 02:22:42 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!dst && !src)
+	int	c;
+
+	c = ft_lstsize(lst) - 1;
+	if (!lst)
 		return (NULL);
-	if (dst < src)
-		ft_memcpy(dst, src, n);
-	else
+	while (c)
 	{
-		while (n--)
-			((unsigned char *)dst)[n] = ((unsigned char *)src)[n];
+		lst = lst->next;
+		c--;
 	}
-	return (dst);
+	return (lst);
 }

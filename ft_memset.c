@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 22:34:56 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/05 19:41:25 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/08 00:49:05 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	*ft_memset(void *s, int c, size_t n)
 
 	t = (unsigned char *)s;
 	while (n--)
-		*t++ = c;
+		*t++ = (unsigned char)c;
 	return (s);
 }

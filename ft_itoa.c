@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:44:45 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/05 18:56:26 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:27:35 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,24 @@
 
 char	*ft_itoa(int n)
 {
-	char	*r;
-	int		c;
-	int		m;
-	long	nb;
+	char	*res;
+	char	arr[11];
+	int		i;
+	int		sgn;
 
-	c = 0;
-	m = 10;
-	nb = n;
-	if (nb < 0)
+	i = 11;
+	sgn = (n > 0) - (n < 0);
+	if (n == 0)
+		return (ft_strdup("0"));
+	while (n)
 	{
-		nb = -nb;
-		c++;
+		arr[--i] = (n % 10) * sgn + '0';
+		n /= 10;
 	}
-	while (nb % m < nb)
-	{
-		c++;
-		m *= 10;
-	}
-	r = ft_calloc(c + 1, sizeof(char));
-	if (!r)
+	if (sgn < 0)
+		arr[--i] = '-';
+	res = ft_calloc((11 - i) + 1, sizeof(char));
+	if (!res)
 		return (NULL);
-	return (r);
+	return (ft_memcpy(res, arr + i, (11 - i)));
 }
