@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 18:33:34 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/14 01:30:17 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/10/30 19:10:54 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/11/15 19:36:09 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+char	*ft_strrchr(const char *string, int ascii)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	char	*occurrence;
+
+	occurrence = NULL;
+	while (*string)
+	{
+		if ((unsigned char)*string == (unsigned char)ascii)
+			occurrence = (char *)string;
+		string++;
+	}
+	if ((unsigned char)ascii == '\0')
+		return ((char *)string);
+	return (occurrence);
 }

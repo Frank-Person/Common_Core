@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 18:33:34 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/14 01:30:17 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/11/01 01:01:05 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/11/15 18:57:53 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+int	ft_atoi(const char *number)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	int	result;
+	int	sign;
+
+	result = 0;
+	sign = 1;
+	while (*number == ' ' || (*number >= '\t' && *number <= '\r'))
+		number++;
+	if (*number == '+' || *number == '-')
+	{
+		sign = (*number == '+') - (*number == '-');
+		number++;
+	}
+	while (ft_isdigit(*number))
+	{
+		result = (result * 10) + (*number - '0');
+		number++;
+	}
+	return (result * sign);
 }

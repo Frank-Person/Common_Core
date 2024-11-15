@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 18:33:34 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/14 01:30:17 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/11/01 20:52:22 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/11/15 18:21:07 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_putnbr_fd(int n, int file_descriptor)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	long	number;
+	char	character;
+
+	number = n;
+	if (number < 0)
+	{
+		number = -number;
+		write(file_descriptor, "-", 1);
+	}
+	if (number > 9)
+		ft_putnbr_fd((number / 10), file_descriptor);
+	character = (number % 10) + '0';
+	write(file_descriptor, &character, 1);
 }

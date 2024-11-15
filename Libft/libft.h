@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:07:08 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/14 19:36:58 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/15 19:18:28 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h> //remove after
+# include <stdio.h>
 
 typedef struct s_list
 {
