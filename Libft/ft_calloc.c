@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 01:35:53 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 17:55:07 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:52:06 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	*ft_calloc(size_t slots, size_t slot_size)
 	result = malloc(slots * slot_size);
 	if (!result)
 		return (NULL);
-	ft_bzero(result, slots * slot_size);
+	ft_memset(result, '\0', slots * slot_size);
 	return (result);
 }

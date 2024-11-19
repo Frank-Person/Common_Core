@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 02:28:14 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 19:23:26 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:15:37 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ size_t	ft_strlcat(char *dest, const char *src, size_t dest_size)
 	size_t	dest_length;
 	size_t	source_length;
 
-	dest_length = ft_strlen(dest);
 	source_length = ft_strlen(src);
+	if (!dest_size)
+		return (source_length);
+	dest_length = ft_strlen(dest);
 	if (dest_length >= dest_size)
 		return (dest_size + source_length);
 	if (source_length < dest_size - dest_length)
