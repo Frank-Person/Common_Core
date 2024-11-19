@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 23:39:46 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:51:30 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:25:20 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t legnth)
 	little_length = ft_strlen(little);
 	if (!little_length)
 		return ((char *)big);
+	if (!legnth)
+		return (NULL);
 	while (*big && little_length <= legnth--)
 	{
 		if (ft_strncmp(big, little, little_length) == 0)
