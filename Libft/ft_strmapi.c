@@ -6,27 +6,27 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:00:16 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:49:08 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/21 02:42:01 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *string, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *str, char (*f)(unsigned int, char))
 {
-	unsigned int	index;
-	char			*result;
+	unsigned int	i;
+	char			*res;
 
-	if (!string || !f)
+	if (!str || !f)
 		return (NULL);
-	result = ft_calloc(ft_strlen(string) + 1, sizeof(char));
-	if (!result)
+	res = ft_calloc(ft_strlen(str) + 1, sizeof(char));
+	if (!res)
 		return (NULL);
-	index = 0;
-	while (string[index])
+	i = 0;
+	while (str[i])
 	{
-		result[index] = (*f)(index, string[index]);
-		index++;
+		res[i] = (*f)(i, str[i]);
+		i++;
 	}
-	return (result);
+	return (res);
 }

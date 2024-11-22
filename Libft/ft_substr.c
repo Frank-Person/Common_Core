@@ -6,27 +6,27 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 19:22:38 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:55:59 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/22 00:17:19 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *string, unsigned int start, size_t length)
+char	*ft_substr(char const *str, unsigned int strt, size_t len)
 {
-	char	*substring;
-	size_t	size;
+	char	*ss;
+	size_t	sz;
 
-	if (!string)
+	if (!str)
 		return (NULL);
-	size = ft_strlen(string);
-	if (start >= size)
-		return (ft_calloc(1, sizeof(char)));
-	if (length > size - start)
-		length = size - start;
-	substring = ft_calloc(length + 1, sizeof(char));
-	if (!substring)
+	sz = ft_strlen(str);
+	if (strt >= sz)
+		return (ft_strdup(""));
+	if (len > sz - strt)
+		len = sz - strt;
+	ss = ft_calloc(len + 1, sizeof(char));
+	if (!ss)
 		return (NULL);
-	ft_memcpy(substring, string + start, length);
-	return (substring);
+	ft_memcpy(ss, str + strt, len);
+	return (ss);
 }

@@ -6,18 +6,18 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:03:13 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:48:04 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/21 02:43:06 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *string)
+size_t	ft_strlen(const char *str)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (string[index])
-		index++;
-	return (index);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

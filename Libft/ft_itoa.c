@@ -6,32 +6,32 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:44:45 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:02:05 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:57:08 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int number)
+char	*ft_itoa(int nbr)
 {
-	char	*string;
-	char	array[11];
-	int		index;
-	int		sign;
+	char	*str;
+	char	arr[11];
+	int		i;
+	int		sgn;
 
-	index = 11;
-	sign = (number > 0) - (number < 0);
-	if (number == 0)
+	i = 11;
+	sgn = (nbr > 0) - (nbr < 0);
+	if (nbr == 0)
 		return (ft_strdup("0"));
-	while (number)
+	while (nbr)
 	{
-		array[--index] = (number % 10) * sign + '0';
-		number /= 10;
+		arr[--i] = (nbr % 10) * sgn + '0';
+		nbr /= 10;
 	}
-	if (sign < 0)
-		array[--index] = '-';
-	string = ft_calloc((11 - index) + 1, sizeof(char));
-	if (!string)
+	if (sgn < 0)
+		arr[--i] = '-';
+	str = ft_calloc((11 - i) + 1, sizeof(char));
+	if (!str)
 		return (NULL);
-	return (ft_memcpy(string, array + index, (11 - index)));
+	return (ft_memcpy(str, arr + i, (11 - i)));
 }

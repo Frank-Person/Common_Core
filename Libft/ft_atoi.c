@@ -6,30 +6,30 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 01:01:05 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:57:53 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:54:09 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *number)
+int	ft_atoi(const char *nbr)
 {
-	int	result;
-	int	sign;
+	int	res;
+	int	sgn;
 
-	result = 0;
-	sign = 1;
-	while (*number == ' ' || (*number >= '\t' && *number <= '\r'))
-		number++;
-	if (*number == '+' || *number == '-')
+	res = 0;
+	sgn = 1;
+	while (*nbr == ' ' || (*nbr >= '\t' && *nbr <= '\r'))
+		nbr++;
+	if (*nbr == '+' || *nbr == '-')
 	{
-		sign = (*number == '+') - (*number == '-');
-		number++;
+		sgn = (*nbr == '+') - (*nbr == '-');
+		nbr++;
 	}
-	while (ft_isdigit(*number))
+	while (ft_isdigit(*nbr))
 	{
-		result = (result * 10) + (*number - '0');
-		number++;
+		res = (res * 10) + (*nbr - '0');
+		nbr++;
 	}
-	return (result * sign);
+	return (res * sgn);
 }

@@ -6,29 +6,29 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 19:58:11 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:54:51 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:18:48 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *string, char const *set)
+char	*ft_strtrim(char const *str, char const *st)
 {
-	char	*trimmed;
-	size_t	start;
+	char	*trm;
+	size_t	bgn;
 	size_t	end;
 
-	if (!string || !set)
+	if (!str || !st)
 		return (NULL);
-	start = 0;
-	end = ft_strlen(string);
-	while (string[start] && ft_strchr(set, string[start]))
-		start++;
-	while (end > start && ft_strchr(set, string[end - 1]))
+	bgn = 0;
+	end = ft_strlen(str);
+	while (str[bgn] && ft_strchr(st, str[bgn]))
+		bgn++;
+	while (end > bgn && ft_strchr(st, str[end - 1]))
 		end--;
-	trimmed = ft_calloc((end - start) + 1, sizeof(char));
-	if (!trimmed)
+	trm = ft_calloc((end - bgn) + 1, sizeof(char));
+	if (!trm)
 		return (NULL);
-	ft_memcpy(trimmed, string + start, (end - start));
-	return (trimmed);
+	ft_memcpy(trm, str + bgn, (end - bgn));
+	return (trm);
 }

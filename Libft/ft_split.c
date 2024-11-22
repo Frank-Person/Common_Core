@@ -6,65 +6,65 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:30:15 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 19:24:08 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/22 00:03:15 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	word_count(char const *string, char character)
+static size_t	ft_hmw(char const *str, char c)
 {
-	size_t	counter;
+	size_t	cnt;
 
-	counter = 0;
-	while (*string)
+	cnt = 0;
+	while (*str)
 	{
-		while (*string == character)
-			string++;
-		if (*string && *string != character)
+		while (*str == c)
+			str++;
+		if (*str && *str != c)
 		{
-			counter++;
-			while (*string && *string != character)
-				string++;
+			cnt++;
+			while (*str && *str != c)
+				str++;
 		}
 	}
-	return (counter);
+	return (cnt);
 }
 
-static char	**recursive_split(char **matrix, char const *string, char character)
+static char	**r_split(char **strs, char const *str, char c)
 {
-	char	*substring;
+	char	*s_str;
 
-	while (*string && *string == character)
-		string++;
-	if (!*string)
-		return (matrix);
-	substring = (char *)string;
-	while (*string && *string != character)
-		string++;
-	*matrix = ft_substr(substring, 0, string - substring);
-	if (!*matrix)
+	while (*str && *str == c)
+		str++;
+	if (!*str)
+		return (strs);
+	s_str = (char *)str;
+	while (*str && *str != c)
+		str++;
+	*strs = ft_substr(s_str, 0, str - s_str);
+	if (!*strs)
 		return (NULL);
-	return (recursive_split(matrix + 1, string, character));
+	return (r_split(strs + 1, str, c));
 }
 
-char	**ft_split(char const *string, char character)
+char	**ft_split(char const *str, char c)
 {
-	char	**matrix;
-	char	**error;
+	char	**strs;
+	char	**stpt;
 
-	if (!string)
+	if (!str)
 		return (NULL);
-	matrix = ft_calloc(word_count(string, character) + 1, sizeof(char *));
-	if (!matrix)
+	strs = ft_calloc(ft_hmw(str, c) + 1, sizeof(char *));
+	if (!strs)
 		return (NULL);
-	error = matrix;
-	if (!recursive_split(matrix, string, character))
+	stpt = strs;
+	if (!r_split(strs, str, c))
 	{
-		while (*error)
-			free(*error++);
-		free(matrix);
+		while (*stpt)
+			free(*stpt++);
+		free(strs);
 		return (NULL);
 	}
-	return (matrix);
+	return (strs);
 }

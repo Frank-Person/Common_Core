@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:16:02 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 18:08:49 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:58:16 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,3 @@ t_list	*ft_lstmap(t_list *list, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_list);
 }
-
-// int	main()
-// {
-// 	t_list	*lst;
-// 	t_list	*nw_lst;
-
-// 	lst = ft_lstnew("1");
-// 	ft_lstadd_back(&lst, ft_lstnew("2"));
-// 	ft_lstadd_back(&lst, ft_lstnew("3"));
-// 	ft_lstadd_back(&lst, ft_lstnew("4"));
-// 	nw_lst = ft_lstmap(lst, )
-// 	printf("%s\n", );
-// 	return (0);
-// }

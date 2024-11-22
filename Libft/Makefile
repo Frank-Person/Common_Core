@@ -6,7 +6,7 @@
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/28 16:27:18 by mrapp-he          #+#    #+#              #
-#    Updated: 2024/11/15 19:20:51 by mrapp-he         ###   ########.fr        #
+#    Updated: 2024/11/22 17:20:13 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,16 @@ $(NAME): $(OBJ)
 %.o: %.c
 	@$(CC) $(CPPFLGS) $(CCFLGS) -c $< -o $@
 
+bonus: $(NAME) .bonus
+
+.bonus: $(OBJ_BONUS)
+	@ar rcs $(NAME) $(OBJ_BONUS)
+	@touch .bonus
+	
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(OBJ_BONUS) .bonus
 
 fclean: clean
 	@rm -f $(NAME)
 	
 re: fclean all
-
-bonus: $(OBJ) $(OBJ_BONUS)
-	@ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
-	
