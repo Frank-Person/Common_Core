@@ -6,12 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 02:28:14 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/22 17:34:57 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:22:55 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <bsd/string.h>
 
 size_t	ft_strlcat(char *dest, const char *src, size_t dsz)
 {
