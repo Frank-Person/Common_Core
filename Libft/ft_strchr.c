@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:03 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/21 02:46:49 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/22 21:25:05 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	if (!str)
-		return (NULL);
 	while (*str)
 	{
 		if (*str == (unsigned char)c)
