@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:41:57 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/27 18:59:18 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:10:05 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	nothing(va_list args)
 	return ;
 }
 
-static void	init_arr(t_ftp funcs)
+static void	init_arr(t_ftp *funcs)
 {
 	int	i;
 
