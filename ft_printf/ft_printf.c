@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:41:57 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/27 18:45:42 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:59:18 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_arr(t_ftp funcs)
 {
 	int	i;
 
-	i = 0
+	i = 0;
 	while (i < 127)
 		funcs[i++] = nothing;
 	funcs['c'] = flag_c;
