@@ -6,16 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:58:56 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/28 03:53:35 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:43:42 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-
-int	flag_pc(void)
-{
-	return (write(1, "%", 1));
-}
+#include "ft_printf.h"
 
 int	flag_xl(va_list args)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:43:50 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/28 03:54:47 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:19:51 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -22,17 +22,17 @@
 # define HEX_L "0123456789abcdef"
 # define DEX "0123456789"
 
-typedef int	(*t_ftp)();
+typedef int	(*t_ftp)(va_list);
 
 int		ft_printf(const char *str, ...);
 int		flag_c(va_list args);
 int		flag_s(va_list args);
 int		flag_p(va_list args);
-int		flag_diu(va_list args);
-int		flag_pc(void);
+int		flag_di(va_list args);
+int		flag_u(va_list args);
 int		flag_xl(va_list args);
 int		flag_xu(va_list args);
-char	*ft_itoa_base(long long nbr, int bsize, char *base);
+char	*ft_itoa_base(unsigned long long nbr, int bsize, char *base);
 size_t	ft_strlen(char	*str);
 
 #endif
