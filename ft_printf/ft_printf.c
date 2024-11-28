@@ -6,11 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:41:57 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/28 18:02:43 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:30:24 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf.h" 
 
 static void	init_arr(t_ftp *funcs)
 {
@@ -45,9 +45,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (cnt);
 }
-
-// int	main(void)
-// {
-// 	ft_printf("%d\n", -1);
-// 	return (0);
-// }

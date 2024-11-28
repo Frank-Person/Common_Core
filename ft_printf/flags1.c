@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:41:59 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/28 18:20:26 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:11:47 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ int	flag_di(va_list args)
 	nbr = va_arg(args, int);
 	cnt = 0;
 	if (nbr < 0)
+	{
 		cnt += write(1, "-", 1);
-	str = ft_itoa_base(nbr * -1, 10, DEX);
+		nbr *= -1;
+	}
+	str = ft_itoa_base(nbr, 10, DEX);
 	if (!str)
 		return (write(1, "(null)", 6));
 	return (cnt + write(1, str, ft_strlen(str)));
