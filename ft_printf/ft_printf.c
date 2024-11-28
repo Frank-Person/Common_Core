@@ -6,15 +6,15 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:41:57 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/27 19:10:05 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/28 04:02:14 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	nothing(va_list args)
+static int	nothing(void)
 {
-	return ;
+	return (0);
 }
 
 static void	init_arr(t_ftp *funcs)
@@ -44,9 +44,20 @@ int	ft_printf(const char *str, ...)
 	init_arr(funcs);
 	cnt = 0;
 	va_start(args, str);
-	while (str)
+	while (*str != '\0')
 	{
+		if (*str == '%')
+		{
+			str++;
+			cnt += funcs[*str](args);
+		}
+		cnt += write(1, ++str, 1);
 	}
 	va_end(args);
 	return (cnt);
+}
+int	main(void)
+{
+	ft_printf("The number is %d\n", 10);
+	return (0);
 }

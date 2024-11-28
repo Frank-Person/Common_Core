@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:41:59 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/27 18:15:05 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/11/28 03:49:21 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	flag_c(va_list args)
 {
 	char	chr;
 
-	chr = va_arg(args, char);
+	chr = va_arg(args, int);
 	return (write(1, &chr, 1));
 }
 
@@ -35,7 +35,7 @@ int	flag_p(va_list args)
 	unsigned long	adrs;
 	char			*str;
 
-	adrs = va_arg(args, void *);
+	adrs = va_arg(args, unsigned long);
 	str = ft_itoa_base(adrs, 16, HEX_L);
 	if (!adrs)
 		return (write(1, "(nil)", 5));
