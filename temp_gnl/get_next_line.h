@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 01:35:53 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/29 13:09:19 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/12/07 15:11:43 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/12/07 16:40:18 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	*ft_calloc(size_t nmb, size_t sz)
-{
-	void	*res;
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
-	if ((nmb * sz) / nmb != sz)
-		return (NULL);
-	res = malloc(nmb * sz);
-	if (!res)
-		return (NULL);
-	ft_memset(res, '\0', nmb * sz);
-	return (res);
-}
+# define BUFFER_SIZE 1
+
+char	*get_next_line(int fd);
+ssize_t	line_len(char *line);
+void	mv_buff(char *buffer);
+
+#endif
