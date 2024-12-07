@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 21:35:55 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/12/01 17:21:40 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/12/01 17:19:31 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/12/04 22:16:32 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "get_next_line.h"
 
-size_t	ft_strlen(char	*str)
+char	*get_next_line(int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (fd < 0)
+		return (NULL);
 }
 
-char	*ft_itoa_base(unsigned long long nbr, int bsize, char *base)
+int	main(void)
 {
-	static char	arr[20];
-	int			i;
+	int	fd;
 
-	i = 20;
-	if (nbr == 0)
-	{
-		arr[--i] = '0';
-		return (&arr[i]);
-	}
-	while (nbr > 0)
-	{
-		arr[--i] = base[(nbr % bsize)];
-		nbr /= bsize;
-	}
-	return (&arr[i]);
+	fd = open("test.txt", O_RDONLY);
 }

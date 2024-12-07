@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 18:07:08 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/11/15 19:18:28 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/12/03 20:56:54 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	*ft_calloc(size_t nm, size_t s);
 void	*ft_memset(void *s, int c, size_t n);
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **list, t_list *new_node);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	*ft_memchr(const void *s, int c, size_t n);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **list, t_list *new_node);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	*ft_memcpy(void *dest, const void *src, size_t n);
