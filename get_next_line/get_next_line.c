@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:31 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/12/09 23:20:24 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/12/09 23:34:14 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	int	fd;
+	char	*line;
 	
 	fd = open("test.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	while (line)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		printf("%s", line);
+	}
 	return 0;
 }

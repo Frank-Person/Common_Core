@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:34 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/12/09 23:18:05 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/12/09 23:23:52 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	mv_buff(char *buffer)
 
 	i = 0;
 	j = 0;
-	c_pos = line_len(buffer);
+	c_pos = line_len(buffer) + 1;
 	while (buffer[i])
 	{
 		if (i >= c_pos)
