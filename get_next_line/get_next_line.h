@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 15:11:43 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/12/07 16:40:18 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/12/01 17:19:37 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/12/09 23:18:54 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE 1
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
 char	*get_next_line(int fd);
+char	*line_join(char *p_line, char *buffer);
 ssize_t	line_len(char *line);
 void	mv_buff(char *buffer);
 
