@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:31 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/12/10 14:39:43 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:05:34 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-int	ch_newline(char *buffer)
-{
-	while (*buffer)
-	{
-		if (*buffer++ == '\n')
-			return (1);
-	}
-	return (0);
-}
-
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
@@ -48,8 +38,8 @@ char	*get_next_line(int fd)
 	{
 		if (!buffer[0])
 			rd = read(fd, buffer, BUFFER_SIZE);
-		if (rd < 1)
-		 	return (free(line), NULL);
+		if (rd < 0)
+			return (free(line), NULL);
 		line = line_join(line, buffer);
 		if (ch_newline(buffer) || rd == 0)
 			break ;
@@ -59,19 +49,19 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
-{
-	int	fd;
-	int	stp;
-	char	*line;
-	
-	fd = open("test.txt", O_RDONLY);
-	stp = 1;
-	while (stp)
-	{
-		line = get_next_line(fd);
-		stp = write(1, line, ft_strlen(line));
-		free(line);
-	}
-	return (0);
-}
+// int	main(void)
+// {
+// 	int		fd;
+// 	int		stp;
+// 	char	*line;
+
+// 	fd = open("test.txt", O_RDONLY);
+// 	stp = 1;
+// 	while (stp)
+// 	{
+// 		line = get_next_line(fd);
+// 		stp = write(1, line, ft_strlen(line));
+// 		free(line);
+// 	}
+// 	return (0);
+// }
