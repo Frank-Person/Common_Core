@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:47:05 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/20 16:49:50 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:08:16 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,20 @@
 
 typedef struct s_stack
 {
-	void			*content;
-	struct s_stack	*prev;
-	struct s_stack	*next;
+	t_list	*start;
+	t_list	*end;
+	int	total;
+	char	name;
+
+	void	(*swap)(struct s_stack *);
 }	t_stack;
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*prev;
+	struct s_list	*next;
+}	t_list;
 
 
 #endif
