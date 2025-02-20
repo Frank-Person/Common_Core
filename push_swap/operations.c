@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 17:47:05 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/20 16:49:50 by mrapp-he         ###   ########.fr       */
+/*   Created: 2025/02/20 16:45:04 by mrapp-he          #+#    #+#             */
+/*   Updated: 2025/02/20 17:00:57 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_stack
+t_stack	op_swap(t_stack *stack)
 {
-	void			*content;
-	struct s_stack	*prev;
-	struct s_stack	*next;
-}	t_stack;
+	
+}
 
+t_stack	op_push(t_stack *stack)
+{
 
+}
 
-#endif
+t_stack	op_rotate(t_stack *stack)
+{
+
+}
+
+t_stack	op_rev_rotate(t_stack *stack)
+{
+	
+}
