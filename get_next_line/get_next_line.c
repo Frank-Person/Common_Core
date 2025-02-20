@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:31 by mrapp-he          #+#    #+#             */
-/*   Updated: 2024/12/17 17:02:06 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/01/18 21:18:57 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,20 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
+int	main(void)
+{
+	int		fd;
+	char	*line;
 
-// 	fd = open("big_line_no_nl", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	write(1, line, line_len(line) + 1);
-// 	free(line);
-// 	while (line)
-// 	{
-// 		line = get_next_line(fd);
-// 		write(1, line, line_len(line));
-// 		free(line);
-// 	}
-// 	return (0);
-// }
+	fd = open("ola", O_RDONLY);
+	line = get_next_line(fd);
+	write(1, line, line_len(line) + 1);
+	free(line);
+	while (line)
+	{
+		line = get_next_line(fd);
+		write(1, line, line_len(line));
+		free(line);
+	}
+	return (0);
+}
