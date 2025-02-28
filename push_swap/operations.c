@@ -6,47 +6,89 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:45:04 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/20 21:15:35 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/02/28 02:22:50 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	op_swap(t_stack *stack)
+void	op_swap(t_list **stack, char name, int check)
 {
-	write(1, "s", 2);
-	(write(1, &(stack->name), 2)) && (write(1, "\n", 2));
+	t_list	*temp;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	temp = (*stack)->next;
+	(*stack)->next = temp->next;
+	temp->next = (*stack);
+	*stack = temp;
+	if (check)
+	{
+		write(1, "s", 1);
+		write(1, &name, 1);
+		write(1, "\n", 1);
+	}
 }
 
-void	op_push(t_stack *stack)
+void	op_push(t_list **src_stack, t_list **dst_stack, char name)
 {
+	t_list	*temp;
 
+	if (!src_stack || !dst_stack || !*src_stack)
+		return ;
+	temp = *src_stack;
+	*src_stack = (*src_stack)->next;
+	temp->next = NULL;
+	if (*dst_stack)
+		temp->next = *dst_stack;
+	*dst_stack = temp;
+	write(1, "p", 1);
+	write(1, &name, 1);
+	write(1, "\n", 1);
 }
 
-void	op_rotate(t_stack *stack)
+void	op_rotate(t_list **stack, char name, int check)
 {
+	t_list	*last;
+	t_list	*new_head;
 
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	new_head = (*stack)->next;
+	last = ft_lstlast(*stack);
+	last->next = *stack;
+	(*stack)->next = NULL;
+	*stack = new_head;
+	if (check)
+	{
+		write(1, "r", 1);
+		write(1, &name, 1);
+		write(1, "\n", 1);
+	}
 }
 
-void	op_rev_rotate(t_stack *stack)
+void	op_rev_rotate(t_list **stack, char name, int check)
 {
-	
+	t_list	*last;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	last = ft_lstlast(*stack);
+	ft_lst_bflast(*stack)->next = NULL;
+	last->next = *stack;
+	*stack = last;
+	if (check)
+	{
+		write(1, "rr", 2);
+		write(1, &name, 1);
+		write(1, "\n", 1);
+	}
 }
-t_stack	*new_stack(char name)
+
+void	double_op(void (*f)(t_list **, char, int), t_list **stack_a, t_list **stack_b, char name)
 {
-	t_stack	*new;
-
-	new = calloc(1, sizeof(t_stack));
-	new->name = name;
-	new->swap = op_swap;
-}
-
-int main()
-{
-	t_stack *a;
-	t_stack *b;
-
-	a = new_stack("a");
-	b = new_stack("b");
-	a->swap(&a);
+	if (!f || !stack_a || !stack_b || !name)
+		return ;
+	f(stack_a, name, 0);
+	f(stack_b, name, 1);
 }
