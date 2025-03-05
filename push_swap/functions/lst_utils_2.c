@@ -6,11 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:57:02 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/28 01:54:34 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/01 22:00:28 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	ft_lstsize(t_list *list)
 {

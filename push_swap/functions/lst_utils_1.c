@@ -6,11 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:53:31 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/27 17:50:32 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/01 22:00:25 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	stack_sorted(t_list *stack)
 {

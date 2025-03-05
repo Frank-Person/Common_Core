@@ -6,11 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:45:04 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/28 02:22:50 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/01 22:00:39 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	op_swap(t_list **stack, char name, int check)
 {

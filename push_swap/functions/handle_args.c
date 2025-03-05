@@ -6,11 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 17:50:05 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/28 18:21:50 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/01 22:00:19 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 long	ft_atol(char *alpha)
 {
