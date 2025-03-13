@@ -6,13 +6,13 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:53:31 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/08 15:57:57 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:14:23 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-int	stack_sorted(t_list *stack)
+int	stack_sorted(t_lst *stack)
 {
 	if (!stack)
 		return (0);
@@ -26,9 +26,9 @@ int	stack_sorted(t_list *stack)
 	return (1);
 }
 
-void	ft_lstadd_back(t_list **list, t_list *new_node)
+void	ft_lstadd_back(t_lst **list, t_lst *new_node)
 {
-	t_list	*last_node;
+	t_lst	*last_node;
 
 	if (!list || !new_node)
 		return ;
@@ -39,7 +39,7 @@ void	ft_lstadd_back(t_list **list, t_list *new_node)
 		*list = new_node;
 }
 
-void	ft_lstclear(t_list **list)
+void	ft_lstclear(t_lst **list)
 {
 	void	*next_node;
 
@@ -53,10 +53,10 @@ void	ft_lstclear(t_list **list)
 	}
 }
 
-int	check_doubles(t_list *stack)
+int	check_doubles(t_lst *stack)
 {
-	t_list	*current;
-	t_list	*next;
+	t_lst	*current;
+	t_lst	*next;
 
 	current = stack;
 	while (current && current->next)

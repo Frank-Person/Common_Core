@@ -6,15 +6,15 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 20:49:43 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/08 15:09:54 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:13:57 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-// t_list	*quick_sort(t_list *head)
+// t_lst	*quick_sort(t_lst *head)
 // {
-// 	t_list	*dummy_node;
+// 	t_lst	*dummy_node;
 
 // 	dummy_node->next = head;
 // }

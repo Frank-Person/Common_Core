@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 10:59:25 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/08 15:10:34 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:14:03 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,89 +27,13 @@ static long	ft_atol(char **alpha)
 		num = (num * 10) + (*alpha[0]++ - '0');
 	if (num * sgn > 2147483647 || num * sgn < -2147483648)
 		*alpha[0] = 'e';
-  return (num * sgn);
+	return (num * sgn);
 }
 
-static int partition(int *array, int start, int end)
+t_lst	*build_stack(char **args)
 {
-  int i;
-  int j;
-  int temp;
-  int pivot;
-
-  i = start - 1;
-  j = start;
-  pivot = array[end];
-  while (j <= end - 1)
-  {
-    if (array[j] < pivot)
-    {
-      i++;
-      temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    j++;
-  }
-  temp = array[i + 1];
-  array[i + 1] = array[end];
-  array[end] = temp;
-  return (i + 1);
-}
-
-static void quick_sort(int *array, int start, int end)
-{
-  int pi;
-
-  pi = 0;
-  if (start < end)
-  {
-    pi = partition(array, start, end);
-    quick_sort(array, start, pi - 1);
-    quick_sort(array, pi + 1, end);
-  }
-}
-
-void  assign_indexes(t_list *stack)
-{
-  int     i;
-  int     size;
-  int     *array;
-  t_list  *current;
-
-  i = 0;
-  size = ft_lstsize(stack);
-  array = malloc(size * sizeof(int));
-  if (!array)
-    return ;
-  current = stack;
-  while (current)
-  {
-    array[i++] = current->content;
-    current = current->next;
-  }
-  quick_sort(array, 0, size - 1);
-  current = stack;
-  while (current)
-  {
-    i = 0;
-    while (i < size)
-    {
-      if (current->content == array[i++])
-      {
-        current->index = i - 1;
-        break ;
-      }
-    }
-    current = current->next;
-  }
-  free(array);
-}
-
-t_list	*build_stack(char **args)
-{
-	t_list	*head;
-	long	number;;
+	t_lst	*head;
+	long	number;
 
 	if (!*args)
 		return (NULL);
@@ -124,4 +48,3 @@ t_list	*build_stack(char **args)
 		head->next = build_stack(args);
 	return (head);
 }
-

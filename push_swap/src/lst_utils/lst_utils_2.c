@@ -6,13 +6,13 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:57:02 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/08 15:10:29 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:14:49 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-int	ft_lstsize(t_list *list)
+int	ft_lstsize(t_lst *list)
 {
 	int	size;
 
@@ -25,7 +25,7 @@ int	ft_lstsize(t_list *list)
 	return (size);
 }
 
-t_list	*ft_lstnew(int content)
+t_lst	*ft_lstnew(int content)
 {
 	struct s_list	*node;
 
@@ -37,7 +37,7 @@ t_list	*ft_lstnew(int content)
 	return (node);
 }
 
-t_list	*ft_lstlast(t_list *list)
+t_lst	*ft_lstlast(t_lst *list)
 {
 	if (!list)
 		return (NULL);
@@ -46,9 +46,9 @@ t_list	*ft_lstlast(t_list *list)
 	return (list);
 }
 
-t_list	*ft_lst_bflast(t_list *list)
+t_lst	*ft_lst_bflast(t_lst *list)
 {
-	t_list	*current;
+	t_lst	*current;
 
 	if (!list)
 		return (NULL);
