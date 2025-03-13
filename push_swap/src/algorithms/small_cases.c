@@ -12,7 +12,7 @@
 
 #include "../../push_swap.h"
 
-static t_lst	*lowest_value(t_lst *stack_a)
+static t_lst	*lowest_index(t_lst *stack_a)
 {
 	t_lst	*current;
 	t_lst	*lowest;
@@ -21,7 +21,7 @@ static t_lst	*lowest_value(t_lst *stack_a)
 	lowest = stack_a;
 	while (current)
 	{
-		if (lowest->content > current->content)
+		if (lowest->index > current->index)
 			lowest = current;
 		current = current->next;
 	}
@@ -32,25 +32,30 @@ void	sort_to_3(t_lst **stack_a)
 {
 	if (stack_sorted(*stack_a))
 		return ;
-	if ((*stack_a)->content > (*stack_a)->next->content
-		&& (*stack_a)->content > (*stack_a)->next->next->content)
+	if ((*stack_a)->index > (*stack_a)->next->index
+		&& (*stack_a)->index > (*stack_a)->next->next->index)
 		op_rotate(stack_a, 'a', 1);
-	else if ((*stack_a)->next->content > (*stack_a)->content
-		&& (*stack_a)->next->content > (*stack_a)->next->next->content)
+	else if ((*stack_a)->next->index > (*stack_a)->index
+		&& (*stack_a)->next->index > (*stack_a)->next->next->index)
 		op_rev_rotate(stack_a, 'a', 1);
-	if ((*stack_a)->content > (*stack_a)->next->content)
+	if ((*stack_a)->index > (*stack_a)->next->index)
 		op_swap(stack_a, 'a', 1);
 }
 
 void	sort_to_4(t_lst **stack_a, t_lst *stack_b)
 {
-	t_lst	*lowest;
+	t_lst *lowest;
 
-	lowest = lowest_value(*stack_a);
+	lowest = lowest_index(*stack_a);
 	if (stack_sorted(*stack_a))
 		return ;
 	while (*stack_a != lowest)
-		op_rotate(stack_a, 'a', 1);
+	{
+		if ((*stack_a)->index <= 1)
+			op_rotate(stack_a, 'a', 1);
+		else
+			op_rev_rotate(stack_a, 'a', 1);
+	}
 	op_push(stack_a, &stack_b, 'b');
 	sort_to_3(stack_a);
 	op_push(&stack_b, stack_a, 'a');
@@ -58,13 +63,18 @@ void	sort_to_4(t_lst **stack_a, t_lst *stack_b)
 
 void	sort_to_5(t_lst **stack_a, t_lst *stack_b)
 {
-	t_lst	*lowest;
+	t_lst *lowest;
 
-	lowest = lowest_value(*stack_a);
+	lowest = lowest_index(*stack_a);
 	if (stack_sorted(*stack_a))
 		return ;
 	while (*stack_a != lowest)
-		op_rotate(stack_a, 'a', 1);
+	{
+		if ((*stack_a)->index <= 2)
+			op_rotate(stack_a, 'a', 1);
+		else
+			op_rev_rotate(stack_a, 'a', 1);
+	}
 	op_push(stack_a, &stack_b, 'b');
 	sort_to_4(stack_a, stack_b);
 	op_push(&stack_b, stack_a, 'a');
