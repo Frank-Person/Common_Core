@@ -6,11 +6,11 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:53:31 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/01 22:00:25 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:57:57 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 int	stack_sorted(t_list *stack)
 {
@@ -22,6 +22,7 @@ int	stack_sorted(t_list *stack)
 			return (0);
 		stack = stack->next;
 	}
+	exit(printf("Stack Sorted!"));
 	return (1);
 }
 
@@ -38,24 +39,36 @@ void	ft_lstadd_back(t_list **list, t_list *new_node)
 		*list = new_node;
 }
 
-void	ft_lstclear(t_list **list, void (*del)(void *))
+void	ft_lstclear(t_list **list)
 {
 	void	*next_node;
 
-	if (!list || !del)
+	if (!list)
 		return ;
 	while (*list)
 	{
 		next_node = (*list)->next;
-		ft_lstdelone(*list, del);
+		free(*list);
 		*list = next_node;
 	}
 }
 
-void	ft_lstdelone(t_list *list, void (*del)(void *))
+int	check_doubles(t_list *stack)
 {
-	if (!list || !del)
-		return ;
-	del(list->content);
-	free(list);
+	t_list	*current;
+	t_list	*next;
+
+	current = stack;
+	while (current && current->next)
+	{
+		next = current->next;
+		while (next)
+		{
+			if (current->content == next->content)
+				return (1);
+			next = next->next;
+		}
+		current = current->next;
+	}
+	return (0);
 }
