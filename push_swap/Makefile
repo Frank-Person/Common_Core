@@ -6,29 +6,29 @@
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/20 17:47:13 by mrapp-he          #+#    #+#              #
-#    Updated: 2025/02/28 18:31:34 by mrapp-he         ###   ########.fr        #
+#    Updated: 2025/03/10 17:16:13 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
-SRCS = push_swap.c operations.c lst_utils_1.c lst_utils_2.c handle_args.c
-OBJS := $(SRC:%.c=%.o)
+NAME = push_swap
+SRCS = $(shell find . -type f -name "*.c")
+OBJS = $(SRCS:%.c=%.o)
 CC = cc
-CCFLGS = -Wall -Wextra -Werror
-CPPFLGS = -I .
+CFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -I .
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	@$(CC) $(OBJS) -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CPPFLGS) $(CCFLGS) -c $< -o $@
+	@$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJS)
 
 fclean: clean
 	@rm -f $(NAME)
-	
+
 re: fclean all
