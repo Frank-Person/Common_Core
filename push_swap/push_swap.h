@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:47:05 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/02/28 18:30:49 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:14:03 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 typedef struct s_list
 {
-	int				index;
-	int				content;
+	int		content;
 	struct s_list	*next;
 }	t_list;
 
