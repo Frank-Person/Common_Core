@@ -32,19 +32,24 @@ static long	ft_atol(char **alpha)
 
 t_lst	*build_stack(char **args)
 {
+	static int	error;
 	t_lst	*head;
 	long	number;
 
 	if (!*args)
 		return (NULL);
 	head = NULL;
+	if (!*args[0])
+		error++;
 	number = ft_atol(args);
 	if (*args[0] == '\0')
 		args++;
 	else if (*args[0] != ' ')
-		exit(write(2, "Error\n", 6));
+		error++;
 	head = ft_lstnew(number);
-	if (head)
+	if (head && !error)
 		head->next = build_stack(args);
+	if (error)
+		return (free(head), NULL);
 	return (head);
 }

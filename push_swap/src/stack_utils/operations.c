@@ -27,7 +27,6 @@ void	op_swap(t_lst **stack, char name, int check)
 		write(1, "s", 1);
 		write(1, &name, 1);
 		write(1, "\n", 1);
-		moves += 1;
 	}
 }
 
@@ -44,7 +43,6 @@ void	op_push(t_lst **src_stack, t_lst **dst_stack, char name)
 	write(1, "p", 1);
 	write(1, &name, 1);
 	write(1, "\n", 1);
-	moves += 1;
 }
 
 void	op_rotate(t_lst **stack, char name, int check)
@@ -64,7 +62,6 @@ void	op_rotate(t_lst **stack, char name, int check)
 		write(1, "r", 1);
 		write(1, &name, 1);
 		write(1, "\n", 1);
-		moves += 1;
 	}
 }
 
@@ -87,7 +84,6 @@ void	op_rev_rotate(t_lst **stack, char name, int check)
 		write(1, "rr", 2);
 		write(1, &name, 1);
 		write(1, "\n", 1);
-		moves += 1;
 	}
 }
 

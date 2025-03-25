@@ -17,8 +17,6 @@
 # include <unistd.h>
 # include <stdio.h>
 
-extern int	moves;
-
 typedef struct s_list
 {
 	int				index;
@@ -33,11 +31,13 @@ t_lst	*ft_lstnew(int content);
 t_lst	*ft_lstlast(t_lst *list);
 t_lst	*build_stack(char **args);
 t_lst	*ft_lst_bflast(t_lst *list);
+void	liberate(t_lst *stack);
 void	ft_lstclear(t_lst **list);
 void	assign_indexes(t_lst *stack);
 void	sort_to_3(t_lst **stack_a);
 void	sort_to_4(t_lst **stack_a, t_lst *stack_b);
 void	sort_to_5(t_lst **stack_a, t_lst *stack_b);
+void	greedy_sort(t_lst **stack_a, t_lst **stack_b, int size, int num_chunks);
 void	ft_lstadd_back(t_lst **list, t_lst *new_node);
 void	op_swap(t_lst **stack, char name, int check);
 void	op_rotate(t_lst **stack, char name, int check);

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = push_swap
-SRCS = $(shell find . -type f -name "*.c")
+SRCS = push_swap.c $(shell find src -type f -name "*.c")
 OBJS = $(SRCS:%.c=%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

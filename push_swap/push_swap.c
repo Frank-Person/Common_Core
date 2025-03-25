@@ -12,22 +12,15 @@
 
 #include "push_swap.h"
 
-int	moves = 0;
-
-static void	print_stack(t_lst *stack)
-{
-	if (stack)
-	{
-		printf("node: %d, index: %d\n", stack->content, stack->index);
-		print_stack(stack->next);
-	}
-}
-
 static void	check_algorithm(t_lst **stack_a, t_lst **stack_b)
 {
 	int	size;
+	int	num_chunks;
 
 	size = ft_lstsize(*stack_a);
+	num_chunks = 5;
+	if (size > 100 && size <= 500)
+		num_chunks += (size - 100) / 80;
 	if (!stack_sorted(*stack_a) && size == 2)
 		op_swap(stack_a, 'a', 1);
 	else if (size == 3)
@@ -36,6 +29,8 @@ static void	check_algorithm(t_lst **stack_a, t_lst **stack_b)
 		sort_to_4(stack_a, *stack_b);
 	else if (size == 5)
 		sort_to_5(stack_a, *stack_b);
+	else if (size > 5)
+		greedy_sort(stack_a, stack_b, size, num_chunks);
 }
 
 int	main(int argc, char **argv)
@@ -47,16 +42,12 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		stack_a = build_stack(++argv);
-		if (check_doubles(stack_a))
+		if (!stack_a)
 			exit(write(2, "Error\n", 6));
+		else if (check_doubles(stack_a))
+			liberate(stack_a);
 		assign_indexes(stack_a);
-		printf("OG Stack:\n");
-		print_stack(stack_a);
-		printf("\n");
 		check_algorithm(&stack_a, &stack_b);
-		printf("\nSorted Stack:\n");
-		print_stack(stack_a);
-		printf("\nMoves: %d\n", moves);
 		ft_lstclear(&stack_a);
 		free(stack_b);
 	}

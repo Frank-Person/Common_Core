@@ -51,7 +51,7 @@ void	sort_to_4(t_lst **stack_a, t_lst *stack_b)
 		return ;
 	while (*stack_a != lowest)
 	{
-		if ((*stack_a)->index <= 1)
+		if ((*stack_a)->next == lowest || (*stack_a)->next->next == lowest)
 			op_rotate(stack_a, 'a', 1);
 		else
 			op_rev_rotate(stack_a, 'a', 1);
@@ -70,7 +70,7 @@ void	sort_to_5(t_lst **stack_a, t_lst *stack_b)
 		return ;
 	while (*stack_a != lowest)
 	{
-		if ((*stack_a)->index <= 2)
+		if ((*stack_a)->next == lowest || (*stack_a)->next->next == lowest)
 			op_rotate(stack_a, 'a', 1);
 		else
 			op_rev_rotate(stack_a, 'a', 1);
