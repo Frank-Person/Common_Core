@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
-#include <stdlib.h>
 
 int	stack_sorted(t_lst *stack)
 {
@@ -73,9 +72,8 @@ int	check_doubles(t_lst *stack)
 	return (0);
 }
 
-void  liberate(t_lst *stack)
+void	liberate(t_lst *stack)
 {
 	ft_lstclear(&stack);
 	exit(write(2, "Error\n", 6));
 }
-

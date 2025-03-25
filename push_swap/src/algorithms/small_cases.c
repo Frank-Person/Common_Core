@@ -44,7 +44,7 @@ void	sort_to_3(t_lst **stack_a)
 
 void	sort_to_4(t_lst **stack_a, t_lst *stack_b)
 {
-	t_lst *lowest;
+	t_lst	*lowest;
 
 	lowest = lowest_index(*stack_a);
 	if (stack_sorted(*stack_a))
@@ -63,7 +63,7 @@ void	sort_to_4(t_lst **stack_a, t_lst *stack_b)
 
 void	sort_to_5(t_lst **stack_a, t_lst *stack_b)
 {
-	t_lst *lowest;
+	t_lst	*lowest;
 
 	lowest = lowest_index(*stack_a);
 	if (stack_sorted(*stack_a))

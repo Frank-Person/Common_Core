@@ -33,8 +33,8 @@ static long	ft_atol(char **alpha)
 t_lst	*build_stack(char **args)
 {
 	static int	error;
-	t_lst	*head;
-	long	number;
+	t_lst		*head;
+	long		number;
 
 	if (!*args)
 		return (NULL);
