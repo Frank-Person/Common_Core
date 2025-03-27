@@ -5,40 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/20 17:47:13 by mrapp-he          #+#    #+#              #
-#    Updated: 2025/03/10 17:16:13 by mrapp-he         ###   ########.fr        #
+#    Created: 2025/03/27 16:37:40 by mrapp-he          #+#    #+#              #
+#    Updated: 2025/03/27 16:38:02 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-SRCS = push_swap.c src/algorithms/greedy_sort.c src/algorithms/small_cases.c src/lst_utils/lst_utils_1.c src/lst_utils/lst_utils_2.c src/stack_utils/indexation.c src/stack_utils/make_stack.c src/stack_utils/operations.c
-OBJS = $(SRCS:%.c=%.o)
+EXEC1 = client
+EXEC2 = server
+SRCS1 =
+SRCS2 =
+OBJS1 = $(SRCS1:%.c=%.o)
+OBJS2 = $(SRCS2:%.c=%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I .
 
-all: $(NAME)
+all: $(EXEC1) $(EXEC2)
 
-$(NAME): $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME)
-	@echo "Executable created!"
+$(EXEC1): $(OBJS1)
+	@$(CC) $(OBJS1) -o $(EXEC1)
+	@echo "Client created!"
+
+$(EXEC2): $(OBJS2)
+	@$(CC) $(OBJS2) -o $(EXEC2)
+	@echo "Server created!"
 
 %.o: %.c
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
 	@if ls *.o >/dev/null 2>&1; then \
-		rm -f $(OBJS); \
+		rm -f $(OBJS1) $(OBJS2); \
 		echo "Object files deleted!"; \
 	else \
 		echo "No object files to delete!"; \
 	fi
 
-
 fclean: clean
-	@rm -f $(NAME)
-	@echo "Executable deleted!"
+	@rm -f $(EXEC1) $(EXEC2)
+	@echo "Executables deleted!"
 
 re: fclean all
-	@echo "Remaking executable..."
-
+	@echo "Remaking executables..."

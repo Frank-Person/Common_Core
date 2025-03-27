@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/20 17:47:13 by mrapp-he          #+#    #+#              #
-#    Updated: 2025/03/10 17:16:13 by mrapp-he         ###   ########.fr        #
+#    Created: 2025/03/27 16:25:42 by mrapp-he          #+#    #+#              #
+#    Updated: 2025/03/27 16:26:35 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-SRCS = push_swap.c src/algorithms/greedy_sort.c src/algorithms/small_cases.c src/lst_utils/lst_utils_1.c src/lst_utils/lst_utils_2.c src/stack_utils/indexation.c src/stack_utils/make_stack.c src/stack_utils/operations.c
+NAME = fractol
+SRCS = 
 OBJS = $(SRCS:%.c=%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -34,11 +34,9 @@ clean:
 		echo "No object files to delete!"; \
 	fi
 
-
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Executable deleted!"
 
 re: fclean all
 	@echo "Remaking executable..."
-
