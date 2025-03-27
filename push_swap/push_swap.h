@@ -13,6 +13,9 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -38,7 +41,6 @@ void	sort_to_3(t_lst **stack_a);
 void	sort_to_4(t_lst **stack_a, t_lst *stack_b);
 void	sort_to_5(t_lst **stack_a, t_lst *stack_b);
 void	greedy_sort(t_lst **stack_a, t_lst **stack_b, int size, int num_chunks);
-void	ft_lstadd_back(t_lst **list, t_lst *new_node);
 void	op_swap(t_lst **stack, char name, int check);
 void	op_rotate(t_lst **stack, char name, int check);
 void	op_rev_rotate(t_lst **stack, char name, int check);

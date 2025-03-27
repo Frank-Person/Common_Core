@@ -23,9 +23,10 @@ static long	ft_atol(char **alpha)
 	sgn = (*alpha[0] != '-') - (*alpha[0] == '-');
 	if (*alpha[0] == '+' || *alpha[0] == '-')
 		alpha[0]++;
-	while (*alpha[0] >= '0' && *alpha[0] <= '9')
+	while (*alpha[0] >= '0' && *alpha[0] <= '9'
+		&& !(num * sgn > INT_MAX || num * sgn < INT_MIN))
 		num = (num * 10) + (*alpha[0]++ - '0');
-	if (num * sgn > 2147483647 || num * sgn < -2147483648)
+	if (num * sgn > INT_MAX || num * sgn < INT_MIN)
 		*alpha[0] = 'e';
 	return (num * sgn);
 }
@@ -36,7 +37,7 @@ t_lst	*build_stack(char **args)
 	t_lst		*head;
 	long		number;
 
-	if (!*args)
+	if (!*args || **args == '\0' || (**args == ' ' && *(*args + 1) == '\0'))
 		return (NULL);
 	head = NULL;
 	if (!*args[0])

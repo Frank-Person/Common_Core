@@ -25,19 +25,6 @@ int	stack_sorted(t_lst *stack)
 	return (1);
 }
 
-void	ft_lstadd_back(t_lst **list, t_lst *new_node)
-{
-	t_lst	*last_node;
-
-	if (!list || !new_node)
-		return ;
-	last_node = ft_lstlast(*list);
-	if (last_node)
-		last_node->next = new_node;
-	else
-		*list = new_node;
-}
-
 void	ft_lstclear(t_lst **list)
 {
 	void	*next_node;

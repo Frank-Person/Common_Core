@@ -11,13 +11,14 @@
 # **************************************************************************** #
 
 NAME = push_swap
-SRCS = push_swap.c $(shell find src -type f -name "*.c")
+SRCS = push_swap.c src/algorithms/greedy_sort.c src/algorithms/small_cases.c src/lst_utils/lst_utils_1.c src/lst_utils/lst_utils_2.c src/stack_utils/indexation.c src/stack_utils/make_stack.c src/stack_utils/operations.c
 OBJS = $(SRCS:%.c=%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I .
 
 all: $(NAME)
+	@echo "Executable created!"
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME)
@@ -26,9 +27,18 @@ $(NAME): $(OBJS)
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)
+	@if ls *.o >/dev/null 2>&1; then \
+		rm -f $(OBJS); \
+		echo "Object files deleted!"; \
+	else \
+		echo "No object files to delete!"; \
+	fi
+
 
 fclean: clean
 	@rm -f $(NAME)
+	@echo "Executable deleted!"
 
 re: fclean all
+	@echo "Remaking executable..."
+
