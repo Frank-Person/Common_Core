@@ -12,7 +12,8 @@
 
 NAME = push_swap
 SRCS = push_swap.c src/algorithms/greedy_sort.c src/algorithms/small_cases.c src/lst_utils/lst_utils_1.c src/lst_utils/lst_utils_2.c src/stack_utils/indexation.c src/stack_utils/make_stack.c src/stack_utils/operations.c
-OBJS = $(SRCS:%.c=%.o)
+OBJ_DIR = build
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I .
@@ -23,12 +24,15 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME)
 	@echo "Executable created!"
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)/src/algorithms $(OBJ_DIR)/src/lst_utils $(OBJ_DIR)/src/stack_utils
+
 clean:
-	@if ls *.o >/dev/null 2>&1; then \
-		rm -f $(OBJS); \
+	@if ls $(OBJ_DIR)/*.o >/dev/null 2>&1; then \
+		rm -rf $(OBJ_DIR); \
 		echo "Object files deleted!"; \
 	else \
 		echo "No object files to delete!"; \

@@ -11,8 +11,9 @@
 # **************************************************************************** #
 
 NAME = fractol
-SRCS = 
-OBJS = $(SRCS:%.c=%.o)
+SRCS = fractol.c
+OBJ_DIR = build
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I .
@@ -23,12 +24,15 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME)
 	@echo "Executable created!"
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)/src
 
 clean:
 	@if ls *.o >/dev/null 2>&1; then \
-		rm -f $(OBJS); \
+		rm -f $(OBJ_DIR); \
 		echo "Object files deleted!"; \
 	else \
 		echo "No object files to delete!"; \

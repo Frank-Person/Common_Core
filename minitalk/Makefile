@@ -12,10 +12,11 @@
 
 EXEC1 = client
 EXEC2 = server
-SRCS1 =
-SRCS2 =
-OBJS1 = $(SRCS1:%.c=%.o)
-OBJS2 = $(SRCS2:%.c=%.o)
+SRCS1 = client.c
+SRCS2 = server.c
+OBJ_DIR = build
+OBJS1 = $(SRCS1:%.c=$(OBJ_DIR)/%.o)
+OBJS2 = $(SRCS2:%.c=$(OBJ_DIR)/%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I .
@@ -23,19 +24,22 @@ CPPFLAGS = -I .
 all: $(EXEC1) $(EXEC2)
 
 $(EXEC1): $(OBJS1)
-	@$(CC) $(OBJS1) -o $(EXEC1)
+	@$(CC) $(OBJ_DIR) -o $(EXEC1)
 	@echo "Client created!"
 
 $(EXEC2): $(OBJS2)
-	@$(CC) $(OBJS2) -o $(EXEC2)
+	@$(CC) $(OBJ_DIR) -o $(EXEC2)
 	@echo "Server created!"
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)/src
+
 clean:
-	@if ls *.o >/dev/null 2>&1; then \
-		rm -f $(OBJS1) $(OBJS2); \
+	@if ls $(OBJ_DIR)/*.o >/dev/null 2>&1; then \
+		rm -rf $(OBJ_DIR); \
 		echo "Object files deleted!"; \
 	else \
 		echo "No object files to delete!"; \

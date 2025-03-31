@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server..h                                          :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 16:51:00 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/27 16:52:04 by mrapp-he         ###   ########.fr       */
+/*   Created: 2025/03/27 16:49:56 by mrapp-he          #+#    #+#             */
+/*   Updated: 2025/03/27 16:50:47 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
+#include "minitalk.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <signal.h>
+int	  main(int ac, char **av)
+{
+	if (ac > 1)
+	{
 
-#endif
+	}
+	return (0);
+}
