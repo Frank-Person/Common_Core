@@ -42,7 +42,8 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		stack_a = build_stack(++argv);
-		if (!stack_a && **argv != ' ' && (**argv != '\0' || *(*argv - 1) != '\0'))
+		if (!stack_a && **argv != ' '
+			&& (**argv != '\0' || *(*argv - 1) != '\0'))
 			exit(write(2, "Error\n", 6));
 		else if (!stack_a)
 			exit(1);
