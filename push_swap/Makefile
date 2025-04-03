@@ -31,7 +31,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/src/algorithms $(OBJ_DIR)/src/lst_utils $(OBJ_DIR)/src/stack_utils
 
 clean:
-	@if ls $(OBJ_DIR)/*.o >/dev/null 2>&1; then \
+	@if find $(OBJ_DIR) -name "*.o" | grep . >/dev/null 2>&1; then \
 		rm -rf $(OBJ_DIR); \
 		echo "Object files deleted!"; \
 	else \
