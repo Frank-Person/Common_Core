@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = push_swap
-SRCS = push_swap.c src/algorithms/greedy_sort.c src/algorithms/small_cases.c src/lst_utils/lst_utils_1.c src/lst_utils/lst_utils_2.c src/stack_utils/indexation.c src/stack_utils/make_stack.c src/stack_utils/operations.c
+SRCS = src/push_swap.c src/algorithms/greedy_sort.c src/algorithms/small_cases.c src/lst_utils/lst_utils_1.c src/lst_utils/lst_utils_2.c src/stack_utils/indexation.c src/stack_utils/make_stack.c src/stack_utils/operations.c
 OBJ_DIR = build
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = cc

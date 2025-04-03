@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../lib/push_swap.h"
 
 static long	ft_atol(char **alpha)
 {

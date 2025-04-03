@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../lib/push_swap.h"
 
 void	op_swap(t_lst **stack, char name, int check)
 {

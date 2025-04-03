@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../lib/push_swap.h"
 
 int	ft_lstsize(t_lst *list)
 {

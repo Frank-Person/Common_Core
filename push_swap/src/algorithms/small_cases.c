@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../lib/push_swap.h"
 
 static t_lst	*lowest_index(t_lst *stack_a)
 {

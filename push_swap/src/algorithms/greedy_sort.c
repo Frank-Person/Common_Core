@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../lib/push_swap.h"
 
 static int	rotation(t_lst *stack, int min, int max, int size)
 {

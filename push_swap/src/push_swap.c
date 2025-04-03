@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../lib/push_swap.h"
 
 static void	check_algorithm(t_lst **stack_a, t_lst **stack_b)
 {
