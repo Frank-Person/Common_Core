@@ -15,7 +15,7 @@
 static void	check(int signal)
 {
 	if (signal == SIGUSR2)
-		ft_printf("Message Received!\n");
+	{}
 }
 
 static int	ft_atoi(char *str)
@@ -45,7 +45,7 @@ static void	ft_atob(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(500);
+		pause();
 		bit++;
 	}
 }

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../lib/minitalk.h"
-#include <signal.h>
 
 static void	ft_btoa(int sig, siginfo_t *to_handle, void *trash)
 {
@@ -21,15 +20,13 @@ static void	ft_btoa(int sig, siginfo_t *to_handle, void *trash)
 	(void)trash;
 	if (sig == SIGUSR1)
 		bin |= (1 << bit);
+	kill(to_handle->si_pid, SIGUSR2);
 	bit++;
 	if (bit == 8)
 	{
 		ft_printf("%c", bin);
 		if (bin == 0)
-		{
-			kill(to_handle->si_pid, SIGUSR2);
 			ft_printf("\n");
-		}
 		bin = 0;
 		bit = 0;
 	}

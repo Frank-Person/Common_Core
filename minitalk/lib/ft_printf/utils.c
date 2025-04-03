@@ -1,19 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 18:41:40 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/31 18:43:34 by mrapp-he         ###   ########.fr       */
+/*   Created: 2024/11/26 21:35:55 by mrapp-he          #+#    #+#             */
+/*   Updated: 2024/12/01 17:21:40 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "ft_printf.h"
 
-# include <signal.h>
-# include "ft_printf/ft_printf.h"
+size_t	ft_strlen(char	*str)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_itoa_base(unsigned long long nbr, int bsize, char *base)
+{
+	static char	arr[20];
+	int			i;
+
+	i = 20;
+	if (nbr == 0)
+	{
+		arr[--i] = '0';
+		return (&arr[i]);
+	}
+	while (nbr > 0)
+	{
+		arr[--i] = base[(nbr % bsize)];
+		nbr /= bsize;
+	}
+	return (&arr[i]);
+}
