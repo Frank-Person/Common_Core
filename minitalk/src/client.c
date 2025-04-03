@@ -6,22 +6,22 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:49:56 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/03/27 16:50:47 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:55:10 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minitalk.h"
 
-static void	  check(int signal)
+static void	check(int signal)
 {
 	if (signal == SIGUSR2)
 		ft_printf("Message Received!\n");
 }
 
-static int	  ft_atoi(char *str)
+static int	ft_atoi(char *str)
 {
-	int	  sgn;
-	pid_t num;
+	int		sgn;
+	pid_t	num;
 
 	num = 0;
 	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
@@ -34,7 +34,7 @@ static int	  ft_atoi(char *str)
 	return (num * sgn);
 }
 
-static void	  ft_atob(int pid, char c)
+static void	ft_atob(int pid, char c)
 {
 	int	bit;
 
@@ -50,9 +50,9 @@ static void	  ft_atob(int pid, char c)
 	}
 }
 
-int	  main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int	  pid;
+	int	pid;
 
 	if (ac == 3)
 	{
