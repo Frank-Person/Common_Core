@@ -10,13 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../lib/minitalk.h"
+#include <signal.h>
+
+static void		ft_btoa(int sig, siginfo_t *to_handle, void *trash)
+{
+	static int	bin;
+	static int	bit;
+
+	(void)trash;
+	if (sig == SIGUSR1)
+		bin |= (1 << bit);
+	bit++;
+	if (bit == 8)
+	{
+		ft_printf("%c", bin);
+		if (bin == 0)
+		{
+			kill(to_handle->si_pid, SIGUSR2);
+			ft_printf("\n");
+		}
+		bin = 0;
+		bit = 0;
+	}
+}
 
 int	  main(int ac, char **av)
 {
-	if (ac > 1)
-	{
+	int				  pid;
+	struct sigaction  act;
 
-	}
+	(void)av;
+	if (ac != 1)
+		exit(ft_printf("Error\n"));
+	pid = getpid();
+	ft_printf("%d\n", pid);
+	act.sa_sigaction = ft_btoa;
+	sigemptyset(&act.sa_mask);
+	act.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &act, NULL);
+	sigaction(SIGUSR2, &act, NULL);
+	while (1)
+		pause();
 	return (0);
 }
