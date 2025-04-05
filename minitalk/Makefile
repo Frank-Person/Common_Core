@@ -21,7 +21,6 @@ PRINTF = -L lib/ft_printf -lftprintf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = -I lib
-RM = rm -rf
 
 all: printf $(EXEC1) $(EXEC2)
 
@@ -53,7 +52,7 @@ clean:
 
 fclean: clean
 	@make fclean -C lib/ft_printf --no-print-directory
-	@$(RM) $(EXEC1) $(EXEC2) $(OBJ_DIR)
+	@rm -rf $(EXEC1) $(EXEC2) $(OBJ_DIR)
 	@echo "Executables deleted!"
 
 re: fclean all

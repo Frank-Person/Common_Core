@@ -20,16 +20,21 @@ static void	ft_btoa(int sig, siginfo_t *to_handle, void *trash)
 	(void)trash;
 	if (sig == SIGUSR1)
 		bin |= (1 << bit);
-	kill(to_handle->si_pid, SIGUSR2);
+	/*else if (sig == SIGUSR2)*/
+	/*	bin &= ~(1 << bit);*/
 	bit++;
 	if (bit == 8)
 	{
 		ft_printf("%c", bin);
 		if (bin == 0)
+		{
+			kill(to_handle->si_pid, SIGUSR2);
 			ft_printf("\n");
+		}
 		bin = 0;
 		bit = 0;
 	}
+	kill(to_handle->si_pid, SIGUSR1);
 }
 
 int	main(int ac, char **av)
@@ -41,7 +46,7 @@ int	main(int ac, char **av)
 	if (ac != 1)
 		exit(ft_printf("Error\n"));
 	pid = getpid();
-	ft_printf("%d\n", pid);
+	ft_printf("Server PID: %d\n", pid);
 	act.sa_sigaction = ft_btoa;
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = SA_SIGINFO;
