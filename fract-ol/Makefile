@@ -16,23 +16,27 @@ OBJ_DIR = build
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I .
+LIBMLX = -lmlx -lXext -lX11 -lm
+INCLUDE = -I lib
 
-all: $(NAME)
+all: mlx $(NAME)
+
+mlx:
+	@make -C lib/minilibx-linux --no-print-directory
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME)
+	@$(CC) $(OBJS) -o $(NAME) $(LIBMLX) $(INCLUDE)
 	@echo "Executable created!"
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-	@$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/src
 
 clean:
-	@if ls *.o >/dev/null 2>&1; then \
-		rm -f $(OBJ_DIR); \
+	@if find $(OBJ_DIR) -name "*.o" | grep . >/dev/null 2>&1; then \
+		find $(OBJ_DIR) -name "*.o" -delete; \
 		echo "Object files deleted!"; \
 	else \
 		echo "No object files to delete!"; \
@@ -40,6 +44,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@make -C clean lib/minilibx-linux --no-print-directory
 	@echo "Executable deleted!"
 
 re: fclean all
