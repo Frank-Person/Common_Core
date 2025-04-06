@@ -12,46 +12,68 @@
 
 #include "../lib/minitalk.h"
 
-static void	ft_btoa(int sig, siginfo_t *to_handle, void *trash)
+static t_data  *db(void)
 {
-	static int	bin;
-	static int	bit;
+	static t_data  db;
 
+	return (&db);
+}
+
+static void	set_size(void)
+{
+	db()->size = db()->bin;
+	db()->bin = 0;
+	db()->bit = 0;
+}
+
+static void	msg_received(int pid, char *str)
+{
+	kill(pid, SIGUSR2);
+	ft_printf("%s\n", str);
+	db()->size = 0;
+}			 
+
+static void	sig_handler(int sig, siginfo_t *to_handle, void *trash)
+{
 	(void)trash;
 	if (sig == SIGUSR1)
-		bin |= (1 << bit);
-	/*else if (sig == SIGUSR2)*/
-	/*	bin &= ~(1 << bit);*/
-	bit++;
-	if (bit == 8)
+		db()->bin |= (1 << db()->bit);
+	db()->bit++;
+	if (db()->bit == 32 && db()->size == 0)
 	{
-		ft_printf("%c", bin);
-		if (bin == 0)
+		set_size();
+		db()->str = malloc((db()->size + 1) * sizeof(char));
+		if (!db()->str)
+			return ;
+		db()->tmp = db()->str;
+	}
+	if (db()->bit == 8 && db()->size != 0)
+	{
+		*db()->str++ = db()->bin;
+		if (db()->bin == 0)
 		{
-			kill(to_handle->si_pid, SIGUSR2);
-			ft_printf("\n");
+			*db()->str = '\0';
+			msg_received(to_handle->si_pid, db()->tmp);
+			free(db()->tmp);
 		}
-		bin = 0;
-		bit = 0;
+		db()->bin = 0;
+		db()->bit = 0;
 	}
 	kill(to_handle->si_pid, SIGUSR1);
 }
 
 int	main(int ac, char **av)
 {
-	int					pid;
-	struct sigaction	act;
-
 	(void)av;
 	if (ac != 1)
 		exit(ft_printf("Error\n"));
-	pid = getpid();
-	ft_printf("Server PID: %d\n", pid);
-	act.sa_sigaction = ft_btoa;
-	sigemptyset(&act.sa_mask);
-	act.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &act, NULL);
-	sigaction(SIGUSR2, &act, NULL);
+	db()->pid = getpid();
+	ft_printf("Server PID: %d\n", db()->pid);
+	db()->act.sa_sigaction = sig_handler;
+	sigemptyset(&db()->act.sa_mask);
+	db()->act.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &db()->act, NULL);
+	sigaction(SIGUSR2, &db()->act, NULL);
 	while (1)
 		pause();
 	return (0);

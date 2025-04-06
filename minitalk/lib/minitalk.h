@@ -16,4 +16,16 @@
 # include <signal.h>
 # include "ft_printf/ft_printf.h"
 
+typedef struct s_data 
+{
+	int					  ack;
+	int					  size;
+	int					  bit;
+	int					  bin;
+	pid_t				  pid;
+	char				  *str;
+	char				  *tmp;
+	struct sigaction	  act;
+}	t_data;
+
 #endif

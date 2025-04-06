@@ -12,62 +12,65 @@
 
 #include "../lib/minitalk.h"
 
-static volatile sig_atomic_t	g_ack = 0;
-
-static void	check(int signal)
+static t_data  *db(void)
 {
-	if (signal == SIGUSR1)
-		g_ack = 1;
-	else
-		ft_printf("Signal Received!\n");	
+	static t_data  db;
+
+	return (&db);
 }
 
-static int	ft_atoi(char *str)
+static void	sig_receiver(int sig)
 {
-	int		sgn;
-	pid_t	num;
-
-	num = 0;
-	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
-		str++;
-	sgn = (*str != '-') - (*str == '-');
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str && (*str >= '0' && *str <= '9'))
-		num = (num * 10) + (*str++ - '0');
-	return (num * sgn);
+	if (sig == SIGUSR1)
+		db()->ack = 1;
+	else if (sig == SIGUSR2)
+		ft_printf("Message Received!\n");	
 }
 
-static void	ft_atob(int pid, char c)
+static void	size_handler(int size)
 {
-	int	bit;
-
-	bit = 0;
-	while (bit < 8)
+	db()->bit = 0;
+	while (db()->bit < 32)
 	{
-		g_ack = 0;
-		if (c & (1 << bit))
-			kill(pid, SIGUSR1);
+		db()->ack = 0;
+		if (size & (1 << db()->bit))
+			kill(db()->pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);
-		while (!g_ack)
+			kill(db()->pid, SIGUSR2);
+		while (!db()->ack)
 			pause();
-		bit++;
+		db()->bit++;
+	}
+}
+
+static void	sig_handler(char c)
+{
+	db()->bit = 0;
+	while (db()->bit < 8)
+	{
+		db()->ack = 0;
+		if (c & (1 << db()->bit))
+			kill(db()->pid, SIGUSR1);
+		else
+			kill(db()->pid, SIGUSR2);
+		while (!db()->ack)
+			pause();
+		db()->bit++;
 	}
 }
 
 int	main(int ac, char **av)
 {
-	int	pid;
-
 	if (ac == 3)
 	{
-		pid = ft_atoi(av[1]);
-		signal(SIGUSR2, check);
-		signal(SIGUSR1, check);
+		while (*av[1] && (*av[1] >= '0' && *av[1] <= '9'))
+			db()->pid = (db()->pid * 10) + (*av[1]++ - '0');
+		signal(SIGUSR2, sig_receiver);
+		signal(SIGUSR1, sig_receiver);
+		size_handler(ft_strlen(av[2]));
 		while (*av[2])
-			ft_atob(pid, *av[2]++);
-		ft_atob(pid, '\0');
+			sig_handler(*av[2]++);
+		sig_handler(*av[2]);
 	}
 	else
 		exit(ft_printf("Error\n"));
