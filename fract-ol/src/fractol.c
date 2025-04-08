@@ -10,7 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../lib/fractol.h"
+
+static t_data *db(void)
+{
+	static t_data db;
+
+	return (&db);
+}
 
 int	  main(int ac, char **av)
 {

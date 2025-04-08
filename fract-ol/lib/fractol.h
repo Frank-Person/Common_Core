@@ -19,7 +19,12 @@
 # include <string.h>
 # include <stdio.h>
 # include <math.h>
+# include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
 
-
+typedef struct s_data
+{
+	
+} t_data;
 
 #endif
