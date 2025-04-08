@@ -19,7 +19,7 @@ OBJS1 = $(SRCS1:%.c=$(OBJ_DIR)/src/%.o)
 OBJS2 = $(SRCS2:%.c=$(OBJ_DIR)/src/%.o)
 PRINTF = -L lib/ft_printf -lftprintf
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 INCLUDE = -I lib
 
 all: printf $(EXEC1) $(EXEC2)

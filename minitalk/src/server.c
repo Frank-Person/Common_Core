@@ -6,32 +6,39 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:53:12 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/04/03 23:55:39 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/04/08 02:04:58 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minitalk.h"
 
-static t_data  *db(void)
+static t_data	*db(void)
 {
-	static t_data  db;
+	static t_data	db;
 
 	return (&db);
 }
 
-static void	set_size(void)
+static void	msg_received(int pid, int size_check, char *str)
+{
+	kill(pid, SIGUSR2);
+	if (size_check)
+	{
+		ft_printf("%s\n", str);
+		free(db()->tmp);
+	}
+	db()->size = 0;
+	db()->index = 0;
+}
+
+static void	set_size(int pid)
 {
 	db()->size = db()->bin;
+	if (db()->size == 0)
+		msg_received(pid, 0, NULL);
 	db()->bin = 0;
 	db()->bit = 0;
 }
-
-static void	msg_received(int pid, char *str)
-{
-	kill(pid, SIGUSR2);
-	ft_printf("%s\n", str);
-	db()->size = 0;
-}			 
 
 static void	sig_handler(int sig, siginfo_t *to_handle, void *trash)
 {
@@ -41,21 +48,20 @@ static void	sig_handler(int sig, siginfo_t *to_handle, void *trash)
 	db()->bit++;
 	if (db()->bit == 32 && db()->size == 0)
 	{
-		set_size();
-		db()->str = malloc((db()->size + 1) * sizeof(char));
-		if (!db()->str)
-			return ;
-		db()->tmp = db()->str;
+		set_size(to_handle->si_pid);
+		if (db()->size != 0)
+		{
+			db()->str = malloc((db()->size + 1) * sizeof(char));
+			if (!db()->str)
+				return ;
+			db()->tmp = db()->str;
+		}
 	}
 	if (db()->bit == 8 && db()->size != 0)
 	{
-		*db()->str++ = db()->bin;
-		if (db()->bin == 0)
-		{
-			*db()->str = '\0';
-			msg_received(to_handle->si_pid, db()->tmp);
-			free(db()->tmp);
-		}
+		db()->str[db()->index++] = db()->bin;
+		if (db()->bin == 0 && db()->size != 0)
+			msg_received(to_handle->si_pid, 1, db()->tmp);
 		db()->bin = 0;
 		db()->bit = 0;
 	}

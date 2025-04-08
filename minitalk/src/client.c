@@ -6,15 +6,15 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:49:56 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/04/03 23:55:10 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/04/08 02:04:47 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minitalk.h"
 
-static t_data  *db(void)
+static t_data	*db(void)
 {
-	static t_data  db;
+	static t_data	db;
 
 	return (&db);
 }
@@ -24,7 +24,7 @@ static void	sig_receiver(int sig)
 	if (sig == SIGUSR1)
 		db()->ack = 1;
 	else if (sig == SIGUSR2)
-		ft_printf("Message Received!\n");	
+		ft_printf("Message Received!\n");
 }
 
 static void	size_handler(int size)
@@ -65,6 +65,8 @@ int	main(int ac, char **av)
 	{
 		while (*av[1] && (*av[1] >= '0' && *av[1] <= '9'))
 			db()->pid = (db()->pid * 10) + (*av[1]++ - '0');
+		if (db()->pid == 0)
+			exit(ft_printf("Invalid PID\n"));
 		signal(SIGUSR2, sig_receiver);
 		signal(SIGUSR1, sig_receiver);
 		size_handler(ft_strlen(av[2]));
