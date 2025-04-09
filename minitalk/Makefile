@@ -6,7 +6,7 @@
 #    By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/27 16:37:40 by mrapp-he          #+#    #+#              #
-#    Updated: 2025/04/08 21:55:10 by mrapp-he         ###   ########.fr        #
+#    Updated: 2025/04/09 19:12:37 by mrapp-he         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,14 +40,14 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/src
+	@echo "Build directory created!"
 
 clean:
-	@if find $(OBJ_DIR) -name "*.o" | grep . >/dev/null 2>&1; then \
-		make clean -C lib/ft_printf --no-print-directory; \
-		find $(OBJ_DIR) -name "*.o" -delete; \
-		echo "Object files deleted!"; \
+	@if [ -d "build" ]; then \
+		rm -rf build; \
+		echo "Build directory deleted!"; \
 	else \
-		echo "No object files to delete!"; \
+		echo "No build directory to delete!"; \
 	fi
 
 fclean: clean
@@ -55,5 +55,7 @@ fclean: clean
 	@rm -rf $(EXEC1) $(EXEC2) $(OBJ_DIR)
 	@echo "Executables deleted!"
 
-re: fclean all
+re: fclean
+	@echo "Recreating build directory..."
 	@echo "Remaking executables..."
+	@make --no-print-directory
