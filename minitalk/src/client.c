@@ -27,18 +27,19 @@ static void	sig_receiver(int sig)
 		ft_printf("Message Received!\n");
 }
 
-static void	size_handler(int size)
+static void	size_handler(char *str)
 {
 	db()->bit = 0;
+	db()->size = ft_strlen(str);
 	while (db()->bit < 32)
 	{
 		db()->ack = 0;
-		if (size & (1 << db()->bit))
+		if (db()->size & (1 << db()->bit))
 			kill(db()->pid, SIGUSR1);
 		else
 			kill(db()->pid, SIGUSR2);
 		while (!db()->ack)
-			pause();
+			usleep(100);
 		db()->bit++;
 	}
 }
@@ -54,7 +55,7 @@ static void	sig_handler(char c)
 		else
 			kill(db()->pid, SIGUSR2);
 		while (!db()->ack)
-			pause();
+			usleep(100);
 		db()->bit++;
 	}
 }
@@ -69,10 +70,13 @@ int	main(int ac, char **av)
 			exit(ft_printf("Invalid PID\n"));
 		signal(SIGUSR2, sig_receiver);
 		signal(SIGUSR1, sig_receiver);
-		size_handler(ft_strlen(av[2]));
 		while (*av[2])
+		{
+			if (db()->size == 0)
+				size_handler(av[2]);
 			sig_handler(*av[2]++);
-		sig_handler(*av[2]);
+		}
+		sig_handler('\0');
 	}
 	else
 		exit(ft_printf("Error\n"));

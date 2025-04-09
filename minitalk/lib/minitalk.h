@@ -18,14 +18,13 @@
 
 typedef struct s_data
 {
-	int						ack;
 	int						size;
 	int						index;
+	int						ack;
 	int						bit;
 	int						bin;
 	pid_t					pid;
 	char					*str;
-	char					*tmp;
 	struct sigaction		act;
 }	t_data;
 

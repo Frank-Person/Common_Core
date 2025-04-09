@@ -19,13 +19,14 @@ static t_data	*db(void)
 	return (&db);
 }
 
-static void	msg_received(int pid, int size_check, char *str)
+static void	msg_received(int pid, int size_check)
 {
 	kill(pid, SIGUSR2);
 	if (size_check)
 	{
-		ft_printf("%s\n", str);
-		free(db()->tmp);
+		db()->str[db()->index] = '\0';
+		ft_printf("%s\n", db()->str);
+		free(db()->str);
 	}
 	db()->size = 0;
 	db()->index = 0;
@@ -35,7 +36,8 @@ static void	set_size(int pid)
 {
 	db()->size = db()->bin;
 	if (db()->size == 0)
-		msg_received(pid, 0, NULL);
+		msg_received(pid, 0);
+	db()->index = -1;
 	db()->bin = 0;
 	db()->bit = 0;
 }
@@ -54,14 +56,14 @@ static void	sig_handler(int sig, siginfo_t *to_handle, void *trash)
 			db()->str = malloc((db()->size + 1) * sizeof(char));
 			if (!db()->str)
 				return ;
-			db()->tmp = db()->str;
 		}
 	}
 	if (db()->bit == 8 && db()->size != 0)
 	{
-		db()->str[db()->index++] = db()->bin;
+		if (++db()->index < db()->size)
+			db()->str[db()->index] = db()->bin;
 		if (db()->bin == 0 && db()->size != 0)
-			msg_received(to_handle->si_pid, 1, db()->tmp);
+			msg_received(to_handle->si_pid, 1);
 		db()->bin = 0;
 		db()->bit = 0;
 	}
