@@ -43,8 +43,8 @@ $(OBJ_DIR):
 	@echo "Build directory created!"
 
 clean:
-	@if [ -d "build" ]; then \
-		rm -rf build; \
+	@if [ -d "$(OBJ_DIR)" ]; then \
+		rm -rf $(OBJ_DIR); \
 		echo "Build directory deleted!"; \
 	else \
 		echo "No build directory to delete!"; \
