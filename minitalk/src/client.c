@@ -66,7 +66,7 @@ int	main(int ac, char **av)
 	{
 		while (*av[1] && (*av[1] >= '0' && *av[1] <= '9'))
 			db()->pid = (db()->pid * 10) + (*av[1]++ - '0');
-		if (db()->pid == 0)
+		if (db()->pid == 0 || kill(db()->pid, 0))
 			exit(ft_printf("Invalid PID\n"));
 		signal(SIGUSR2, sig_receiver);
 		signal(SIGUSR1, sig_receiver);
@@ -76,7 +76,8 @@ int	main(int ac, char **av)
 				size_handler(av[2]);
 			sig_handler(*av[2]++);
 		}
-		sig_handler('\0');
+		if (db()->size != 0)
+			sig_handler('\0');
 	}
 	else
 		exit(ft_printf("Error\n"));

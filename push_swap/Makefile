@@ -16,7 +16,7 @@ OBJ_DIR = build
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I .
+CPPFLAGS = -I lib
 
 all: $(NAME)
 
@@ -29,20 +29,22 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/src/algorithms $(OBJ_DIR)/src/lst_utils $(OBJ_DIR)/src/stack_utils
+	@echo "Build directory created!"
 
 clean:
-	@if find $(OBJ_DIR) -name "*.o" | grep . >/dev/null 2>&1; then \
+	@if [ -d "$(OBJ_DIR)" ]; then \
 		rm -rf $(OBJ_DIR); \
-		echo "Object files deleted!"; \
+		echo "Build directory deleted!"; \
 	else \
-		echo "No object files to delete!"; \
+		echo "No build directory to delete!"; \
 	fi
-
 
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Executable deleted!"
 
-re: fclean all
-	@echo "Remaking executable..."
+re: fclean
+	@echo "Recreating build directory..."
+	@echo "Remaking executables..."
+	@make --no-print-directory
 

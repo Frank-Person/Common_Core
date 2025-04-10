@@ -35,11 +35,11 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/src
 
 clean:
-	@if find $(OBJ_DIR) -name "*.o" | grep . >/dev/null 2>&1; then \
-		find $(OBJ_DIR) -name "*.o" -delete; \
-		echo "Object files deleted!"; \
+	@if [ -d "$(OBJ_DIR)" ]; then \
+		rm -rf $(OBJ_DIR); \
+		echo "Build directory deleted!"; \
 	else \
-		echo "No object files to delete!"; \
+		echo "No build directory to delete!"; \
 	fi
 
 fclean: clean
@@ -47,5 +47,7 @@ fclean: clean
 	@make -C clean lib/minilibx-linux --no-print-directory
 	@echo "Executable deleted!"
 
-re: fclean all
-	@echo "Remaking executable..."
+re: fclean
+	@echo "Recreating build directory..."
+	@echo "Remaking executables..."
+	@make --no-print-directory
