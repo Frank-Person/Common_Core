@@ -21,7 +21,7 @@ static void	check_algorithm(t_lst **stack_a, t_lst **stack_b)
 	num_chunks = 5;
 	if (size > 100 && size <= 500)
 		num_chunks += (size - 100) / 80;
-	if (!stack_sorted(*stack_a) && size == 2)
+	if (size == 2)
 		op_swap(stack_a, 'a', 1);
 	else if (size == 3)
 		sort_to_3(stack_a);
