@@ -66,8 +66,6 @@ void	sort_to_5(t_lst **stack_a, t_lst *stack_b)
 	t_lst	*lowest;
 
 	lowest = lowest_index(*stack_a);
-	if (stack_sorted(*stack_a))
-		return ;
 	while (*stack_a != lowest)
 	{
 		if ((*stack_a)->next == lowest || (*stack_a)->next->next == lowest)

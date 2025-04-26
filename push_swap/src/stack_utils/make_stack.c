@@ -37,7 +37,7 @@ t_lst	*build_stack(char **args)
 	t_lst		*head;
 	long		number;
 
-	if (!*args || **args == '\0' || (**args == ' ' && *(*args + 1) == '\0'))
+	if (!args || !*args)
 		return (NULL);
 	head = NULL;
 	if (!*args[0])
