@@ -84,10 +84,7 @@ int	main(int ac, char **av)
 		db()->str = av[2];
 		signal(SIGUSR2, sig_receiver);
 		signal(SIGUSR1, sig_receiver);
-		if (!*av[2])
-			send_size();
-		else
-			send_str();
+		send_str();
 	}
 	else
 		exit(ft_printf("Error\n"));

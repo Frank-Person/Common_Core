@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 16:23:23 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/04 19:32:10 by mrapp-he         ###   ########.fr       */
+/*   Created: 2025/05/04 12:13:43 by mrapp-he          #+#    #+#             */
+/*   Updated: 2025/05/04 12:18:01 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/fractol.h"
 
-t_data	*db(void)
+int	  ft_strcmp(char *s1, char *s2)
 {
-	static t_data	db;
+	int	  i;
 
-	return (&db);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac > 1)
-	{
-		db()->zoom = 1.0;
-		if (ac == 3)
-			db()->max_iter = parse_iter(av[2]);
-		else
-			db()->max_iter = parse_iter(av[4]);
-		parse_fractal(ac, av[1]);
-		set_scale();
-		init_fractol();
-		draw_pixels(db()->max_iter, db()->draw_fractal);
-		mlx_loop(db()->mlx);
-	}
-	return (0);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

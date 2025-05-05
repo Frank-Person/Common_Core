@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 16:23:23 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/04 19:32:10 by mrapp-he         ###   ########.fr       */
+/*   Created: 2025/04/30 20:03:41 by mrapp-he          #+#    #+#             */
+/*   Updated: 2025/05/03 20:59:08 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/fractol.h"
 
-t_data	*db(void)
+int	  malloc_error(void)
 {
-	static t_data	db;
-
-	return (&db);
+	perror("Malloc Error!\n");
+	return (1);
 }
 
-int	main(int ac, char **av)
+int	  win_malloc_error(void)
 {
-	if (ac > 1)
-	{
-		db()->zoom = 1.0;
-		if (ac == 3)
-			db()->max_iter = parse_iter(av[2]);
-		else
-			db()->max_iter = parse_iter(av[4]);
-		parse_fractal(ac, av[1]);
-		set_scale();
-		init_fractol();
-		draw_pixels(db()->max_iter, db()->draw_fractal);
-		mlx_loop(db()->mlx);
-	}
-	return (0);
+	mlx_destroy_display(db()->mlx);
+	return (free(db()->mlx), malloc_error());
+}
+
+int	  img_malloc_error(void)
+{
+	mlx_clear_window(db()->mlx, db()->win);
+	return (win_malloc_error());
+}
+
+int	  input_error(void)
+{
+	perror("Input Error!\n");
+	return (1);
 }
