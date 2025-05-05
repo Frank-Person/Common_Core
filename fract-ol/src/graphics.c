@@ -54,11 +54,12 @@ void	put_pixel(int x, int y, int color)
 	}
 }
 
-void	draw_pixels(int max_iter, void (*draw)(int, int, int))
+void	render_fractal(int max_iter, void (*draw)(int, int, int))
 {
 	int	  x;
 	int	  y;
 
+	set_scale();
 	y = -1;
 	while (++y < HEIGHT)
 	{

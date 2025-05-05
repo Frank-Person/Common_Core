@@ -21,18 +21,21 @@ t_data	*db(void)
 
 int	main(int ac, char **av)
 {
-	if (ac > 1)
+	if (ac > 1 && ac < 6)
 	{
 		db()->zoom = 1.0;
 		if (ac == 3)
 			db()->max_iter = parse_iter(av[2]);
-		else
+		else if (ac == 5)
 			db()->max_iter = parse_iter(av[4]);
-		parse_fractal(ac, av[1]);
-		set_scale();
+		else
+			db()->max_iter = MAX_ITER;
 		init_fractol();
-		draw_pixels(db()->max_iter, db()->draw_fractal);
+		render_fractal(db()->max_iter, db()->draw_fractal);
+		mlx_put_image_to_window(db()->mlx, db()->win, db()->img, 0, 0);
 		mlx_loop(db()->mlx);
 	}
+	else
+		exit(input_error());
 	return (0);
 }

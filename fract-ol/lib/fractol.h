@@ -15,7 +15,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MAX_ITER 1250
+# define MAX_ITER 1000
 # define BLACK 0x000000
 # define LNG_MAX 9223372036854775807L
 # define LNG_MIN (-9223372036854775807L - 1)
@@ -82,8 +82,8 @@ void	  init_fractol(void);
 void	  put_pixel(int x, int y, int color);
 void	  draw_mandelbrot(int x, int y, int max_iter);
 void	  draw_julia(int x, int y, int max_iter);
-void	  draw_pixels(int max_iter, void (*draw)(int, int, int));
-void	  parse_fractal(int ac, char *str);
+void	  render_fractal(int max_iter, void (*draw)(int, int, int));
+void	  parse_fractal(char *str);
 int		  ft_strcmp(char *s1, char *s2);
 int		  generate_color(double t, int iter, int max_iter);
 int		  malloc_error(void);
