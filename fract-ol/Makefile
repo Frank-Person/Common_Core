@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = fractol
-SRCS = src/fractol.c src/graphics.c src/complex_utils.c src/errors.c src/fractals.c src/parse.c src/utils.c
+SRCS = src/fractol.c src/graphics.c src/complex_utils.c src/errors.c src/fractals.c src/parse.c src/utils.c src/keys-1.c src/keys-2.c
 OBJ_DIR = build
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = cc

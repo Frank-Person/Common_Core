@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   keys-2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 16:23:23 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/04 19:32:10 by mrapp-he         ###   ########.fr       */
+/*   Created: 2025/05/06 18:51:22 by mrapp-he          #+#    #+#             */
+/*   Updated: 2025/05/06 18:58:58 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/fractol.h"
 
-t_data	*db(void)
+int	  zoom(int key)
 {
-	static t_data	db;
-
-	return (&db);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac > 1 && ac < 6)
-	{
-		parsing(ac, av);
-		init_fractol();
-		render_fractal(db()->max_iter, db()->draw_fractal);
-		mlx_hook(db()->win, 02, 1L<<0, handle_key, db()->win);
-		mlx_hook(db()->win, 17, 1L<<17, x_close, db()->mlx);
-		mlx_loop(db()->mlx);
-	}
-	else
-		exit(input_error());
+	if (key == XK_i)
+		db()->zoom += 0.075;
+	else if (key == XK_o)
+		db()->zoom -= 0.075;
+	render_fractal(db()->max_iter, db()->draw_fractal);
 	return (0);
 }
+
+int	  x_close(void)
+{
+	return (exit(close_window()), 0);
+}
+
+int	  close_window(void)
+{
+	mlx_clear_window(db()->mlx, db()->win);
+	mlx_destroy_display(db()->mlx);
+	free(db()->mlx);
+	return (0);
+}
+

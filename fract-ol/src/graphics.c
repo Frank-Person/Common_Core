@@ -27,6 +27,7 @@ void	init_fractol(void)
 	if (!dt->img)
 		exit(img_malloc_error());
 	dt->addr = mlx_get_data_addr(dt->img, &dt->bpp, &dt->line_len, &dt->endian);
+	dt->zoom = 0.75;
 }
 
 void	set_scale(void)

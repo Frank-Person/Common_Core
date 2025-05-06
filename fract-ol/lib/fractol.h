@@ -6,15 +6,15 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:14:35 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/04 12:36:02 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:58:21 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800
+# define HEIGHT 800
 # define MAX_ITER 1000
 # define BLACK 0x000000
 # define LNG_MAX 9223372036854775807L
@@ -87,6 +87,8 @@ void	  render_fractal(int max_iter, void (*draw)(int, int, int));
 void	  parse_fractal(char *str);
 void	  parsing(int ac, char **av);
 int		  x_close(void);
+int		  zoom(int key);
+int		  close_window(void);
 int		  ft_strcmp(char *s1, char *s2);
 int		  generate_color(double t, int iter, int max_iter);
 int		  malloc_error(void);
