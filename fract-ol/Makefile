@@ -22,7 +22,7 @@ INCLUDE = -Ilib/minilibx-linux -Ilib
 all: mlx $(NAME)
 
 mlx:
-	@make -C lib/minilibx-linux --no-print-directory
+	@make -C lib/minilibx-linux --no-print-directory CC=/usr/local/gcc-10.2/bin/gcc
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME) $(LIBMLX)

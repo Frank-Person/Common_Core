@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../lib/fractol.h"
+#include <X11/X.h>
 
 t_data	*db(void)
 {
@@ -24,15 +25,11 @@ int	main(int ac, char **av)
 	if (ac > 1 && ac < 6)
 	{
 		db()->zoom = 1.0;
-		if (ac == 3)
-			db()->max_iter = parse_iter(av[2]);
-		else if (ac == 5)
-			db()->max_iter = parse_iter(av[4]);
-		else
-			db()->max_iter = MAX_ITER;
+		parsing(ac, av);
 		init_fractol();
 		render_fractal(db()->max_iter, db()->draw_fractal);
-		mlx_put_image_to_window(db()->mlx, db()->win, db()->img, 0, 0);
+		mlx_hook(db()->win, 02, 1L<<0, handle_key, db()->win);
+		mlx_hook(db()->win, 17, 1L<<17, x_close, db()->mlx);
 		mlx_loop(db()->mlx);
 	}
 	else

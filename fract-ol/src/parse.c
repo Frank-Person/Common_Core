@@ -60,9 +60,30 @@ long  parse_iter(char *str)
 void  parse_fractal(char *str)
 {
 	if (ft_strcmp(str, "mandelbrot") == 0)
+	{
 		db()->draw_fractal = &draw_mandelbrot;
+		db()->type = 'm';
+	}
 	else if (ft_strcmp(str, "julia") == 0)
+	{
 		db()->draw_fractal = &draw_julia;
+		db()->type = 'j';
+	}
 	else
 		exit(input_error());
+}
+
+void  parsing(int ac, char **av)
+{
+	parse_fractal(av[1]);
+	if (ac == 3)
+		db()->max_iter = parse_iter(av[2]);
+	else if (ac == 5)
+		db()->max_iter = parse_iter(av[4]);
+	else
+		db()->max_iter = MAX_ITER;
+	if (db()->type == 'j' && ac > 3)
+		db()->c = new_complex(parse_complex(av[2]), parse_complex(av[3]));
+	else
+		db()->c = new_complex(0.355, 0.355);
 }

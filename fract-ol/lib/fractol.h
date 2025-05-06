@@ -70,6 +70,7 @@ typedef struct s_data
 	double		min_im;
 	double		max_im;
 	int			max_iter;
+	int			type;
 	void		(*draw_fractal)(int x, int y, int max_iter);
 
 	/* Complex numbers */
@@ -84,12 +85,15 @@ void	  draw_mandelbrot(int x, int y, int max_iter);
 void	  draw_julia(int x, int y, int max_iter);
 void	  render_fractal(int max_iter, void (*draw)(int, int, int));
 void	  parse_fractal(char *str);
+void	  parsing(int ac, char **av);
+int		  x_close(void);
 int		  ft_strcmp(char *s1, char *s2);
 int		  generate_color(double t, int iter, int max_iter);
 int		  malloc_error(void);
 int		  win_malloc_error(void);
 int		  img_malloc_error(void);
 int		  input_error(void);
+int		  handle_key(int key, void *param);
 int		  iterations(t_complex z, t_complex c, int max_iter);
 long	  parse_iter(char *str);
 t_data	  *db(void);

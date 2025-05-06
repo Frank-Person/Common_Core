@@ -67,6 +67,8 @@ void	render_fractal(int max_iter, void (*draw)(int, int, int))
 		while (++x < WIDTH)
 			draw(x, y, max_iter);
 	}
+	mlx_put_image_to_window(db()->mlx, db()->win, db()->img, 0, 0);
+
 }
 
 int	  generate_color(double t, int iter, int max_iter)
