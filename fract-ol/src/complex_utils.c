@@ -24,18 +24,26 @@ t_complex	new_complex(double re, double im)
 t_complex	add_complex(t_complex z, t_complex c)
 {
 	t_complex	result;
+	double		temp[4];
 
-	result.re = z.re + c.re;
-	result.im = z.im + c.im;
+	temp[0] = z.re;
+	temp[1] = z.im;
+	temp[2] = c.re;
+	temp[3] = c.im;
+	result.re = temp[0] + temp[2];
+	result.im = temp[1] + temp[3];
 	return (result);
 }
 
 t_complex	square_complex(t_complex z)
 {
 	t_complex	result;
+	double		temp[2];
 
-	result.re = z.re * z.re - z.im * z.im;
-	result.im = 2 * z.re * z.im;
+	temp[0] = z.re;
+	temp[1] = z.im;
+	result.re = (temp[0] * temp[0]) - (temp[1] * temp[1]);
+	result.im = 2 * temp[0] * temp[1];
 	return (result);
 }
 
@@ -50,5 +58,9 @@ t_complex	screen_to_complex(int x, int y, double min_re, double max_re, double m
 
 double	magnitude_squared(t_complex z)
 {
-return (z.re * z.re + z.im * z.im);
+	double	  temp[2];
+
+	temp[0] = z.re;
+	temp[1] = z.im;
+	return ((temp[0] * temp[0]) + (temp[1] * temp[1]));
 }

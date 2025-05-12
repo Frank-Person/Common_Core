@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:14:35 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/06 18:58:21 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:38:38 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # define WIDTH 800
 # define HEIGHT 800
-# define MAX_ITER 1000
+# define MAX_ITER 1
 # define BLACK 0x000000
 # define LNG_MAX 9223372036854775807L
 # define LNG_MIN (-9223372036854775807L - 1)
 # define DBL_MAX 1.7976931348623157e+308
 # define DBL_MIN -1.7976931348623157e+308
+# define SCRL_UP 4
+# define SCRL_DW 5
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -42,8 +44,6 @@ typedef struct s_data
 	/* MLX */
 	void		*mlx;
 	void		*win;
-	int			win_w;
-	int			win_h;
 
 	/* Image */
 	void		*img;
@@ -52,11 +52,8 @@ typedef struct s_data
 	int			line_len;
 	int			endian;
 
-	/* Colors (TRGB) */
-	double		t;
-	int			r;
-	int			g;
-	int			b;
+	/* Colors (RGB) */
+	double		rgb[3];
 
 	/* Fractal info */
 	double		zoom;
@@ -65,6 +62,7 @@ typedef struct s_data
 	double		aspect_ratio;
 	double		view_width;
 	double		view_heigth;
+	double		zoom_factor;
 	double		min_re;
 	double		max_re;
 	double		min_im;
@@ -72,6 +70,10 @@ typedef struct s_data
 	int			max_iter;
 	int			type;
 	void		(*draw_fractal)(int x, int y, int max_iter);
+
+	/* Julia info */
+	double		start_re;
+	double		start_im;
 
 	/* Complex numbers */
 	t_complex	z;
@@ -87,10 +89,12 @@ void	  render_fractal(int max_iter, void (*draw)(int, int, int));
 void	  parse_fractal(char *str);
 void	  parsing(int ac, char **av);
 int		  x_close(void);
-int		  zoom(int key);
+int		  rgb(int key);
+int		  handle_mouse(int code, int x, int y, void *param);
+int		  reset(void);
 int		  close_window(void);
 int		  ft_strcmp(char *s1, char *s2);
-int		  generate_color(double t, int iter, int max_iter);
+int		  generate_color(int iter, int max_iter);
 int		  malloc_error(void);
 int		  win_malloc_error(void);
 int		  img_malloc_error(void);

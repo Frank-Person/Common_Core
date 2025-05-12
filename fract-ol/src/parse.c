@@ -75,15 +75,26 @@ void  parse_fractal(char *str)
 
 void  parsing(int ac, char **av)
 {
+	t_data	*dt;
+
+	dt = db();
 	parse_fractal(av[1]);
 	if (ac == 3)
-		db()->max_iter = parse_iter(av[2]);
+		dt->max_iter = parse_iter(av[2]);
 	else if (ac == 5)
-		db()->max_iter = parse_iter(av[4]);
+		dt->max_iter = parse_iter(av[4]);
 	else
-		db()->max_iter = MAX_ITER;
-	if (db()->type == 'j' && ac > 3)
-		db()->c = new_complex(parse_complex(av[2]), parse_complex(av[3]));
+		dt->max_iter = MAX_ITER;
+	if (dt->type == 'j' && ac > 3)
+	{
+		dt->start_re = parse_complex(av[2]);
+		dt->start_im = parse_complex(av[3]);
+		dt->c = new_complex(dt->start_re, dt->start_im);
+	}
 	else
-		db()->c = new_complex(0.355, 0.355);
+	{
+		dt->start_re = 0.355;
+		dt->start_im = 0.355;
+		dt->c = new_complex(dt->start_re, dt->start_im);
+	}
 }

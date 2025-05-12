@@ -26,21 +26,27 @@ void	draw_mandelbrot(int x, int y, int max_iter)
 {
 	int	  iter;
 	int	  color;
+	int	  temp[2];
 
+	temp[0] = x;
+	temp[1] = y;
 	db()->z = new_complex(0, 0);
-	db()->c = screen_to_complex(x, y, db()->min_re, db()->max_re, db()->min_im, db()->max_im);
+	db()->c = screen_to_complex(temp[0], temp[1], db()->min_re, db()->max_re, db()->min_im, db()->max_im);
 	iter = iterations(db()->z, db()->c, max_iter);
-	color = generate_color(db()->t, iter, max_iter);
-	put_pixel(x, y, color);
+	color = generate_color(iter, max_iter);
+	put_pixel(temp[0], temp[1], color);
 }
 
 void	draw_julia(int x, int y, int max_iter)
 {
 	int	  iter;
 	int	  color;
+	int	  temp[2];
 
-	db()->z = screen_to_complex(x, y, db()->min_re, db()->max_re, db()->min_im, db()->max_im);
+	temp[0] = x;
+	temp[1] = y;
+	db()->z = screen_to_complex(temp[0], temp[1], db()->min_re, db()->max_re, db()->min_im, db()->max_im);
 	iter = iterations(db()->z, db()->c, max_iter);
-	color = generate_color(db()->t, iter, max_iter);
-	put_pixel(x, y, color);
+	color = generate_color(iter, max_iter);
+	put_pixel(temp[0], temp[1], color);
 }

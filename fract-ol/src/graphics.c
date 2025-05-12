@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 11:52:43 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/04 19:24:07 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:41:20 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	init_fractol(void)
 		exit(img_malloc_error());
 	dt->addr = mlx_get_data_addr(dt->img, &dt->bpp, &dt->line_len, &dt->endian);
 	dt->zoom = 0.75;
+	dt->rgb[0] = 9.0;
+	dt->rgb[1] = 15.0;
+	dt->rgb[2] = 8.5;
+	set_scale();
 }
 
 void	set_scale(void)
@@ -38,49 +42,62 @@ void	set_scale(void)
 	dt->aspect_ratio = (double)WIDTH / (double)HEIGHT;
 	dt->view_width = 3.0 / dt->zoom;
 	dt->view_heigth = dt->view_width / dt->aspect_ratio;
-	dt->min_re = dt->offset_x -	dt->view_width / 2.0;
-	dt->max_re = dt->offset_x + dt->view_width / 2.0;
-	dt->min_im = dt->offset_y - dt->view_heigth / 2.0;
-	dt->max_im = dt->offset_y + dt->view_heigth / 2.0;
+	dt->min_re = dt->offset_x -	(dt->view_width / 2.0);
+	dt->max_re = dt->offset_x + (dt->view_width / 2.0);
+	dt->min_im = dt->offset_y - (dt->view_heigth / 2.0);
+	dt->max_im = dt->offset_y + (dt->view_heigth / 2.0);
 }
 
 void	put_pixel(int x, int y, int color)
 {
 	char	*pixel;
+	int		pos[2];
 
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+	pos[0] = x;
+	pos[1] = y;
+	if (pos[0] >= 0 && pos[0] < WIDTH && pos[1] >= 0 && pos[1] < HEIGHT)
 	{
-		pixel = db()->addr + (y * db()->line_len + x * (db()->bpp / 8));
+		pixel = db()->addr + (pos[1] * db()->line_len + pos[0] * (db()->bpp / 8));
 		*(unsigned int *)pixel = color;
 	}
 }
 
 void	render_fractal(int max_iter, void (*draw)(int, int, int))
 {
-	int	  x;
-	int	  y;
+	int	  pos[2]; //pos[0] = y; pos[1] = x
 
-	set_scale();
-	y = -1;
-	while (++y < HEIGHT)
+	if (db()->img)
+		mlx_destroy_image(db()->mlx, db()->img);
+	db()->img = mlx_new_image(db()->mlx, WIDTH, HEIGHT);
+	if (!db()->img)
+		exit(img_malloc_error());
+	pos[0] = -1;
+	while (++pos[0] < HEIGHT)
 	{
-		x = -1;
-		while (++x < WIDTH)
-			draw(x, y, max_iter);
+		pos[1] = -1;
+		while (++pos[1] < WIDTH)
+			draw(pos[1], pos[0], max_iter);
 	}
 	mlx_put_image_to_window(db()->mlx, db()->win, db()->img, 0, 0);
 
 }
 
-int	  generate_color(double t, int iter, int max_iter)
+int	  generate_color(int iter, int max_iter)
 {
+	double	*rgb;
+	double	t;
+	int		r;
+	int		g;
+	int		b;
+	int		color;
+
+	rgb = db()->rgb;
 	if (iter == max_iter)
 		return (BLACK);
-
 	t = (double)iter / max_iter;
-	db()->r = (int)(9 * (1 - t) * t * t * t * 255);
-	db()->g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
-	db()->b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-	return ((int)t << 24 | db()->r << 16 | db()->g << 8 | db()->b);
+	r = (int)(rgb[0] * (1 - t) * t * t * t * 255);
+	g = (int)(rgb[1] * (1 - t) * (1 - t) * t * t * 255);
+	b = (int)(rgb[2] * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	color = (r << 16) | (g << 8) | b;
+	return (color);
 }
-
