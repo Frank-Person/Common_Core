@@ -31,7 +31,7 @@ void	draw_mandelbrot(int x, int y, int max_iter)
 	temp[0] = x;
 	temp[1] = y;
 	db()->z = new_complex(0, 0);
-	db()->c = screen_to_complex(temp[0], temp[1], db()->min_re, db()->max_re, db()->min_im, db()->max_im);
+	db()->c = screen_to_complex(temp[0], temp[1]);
 	iter = iterations(db()->z, db()->c, max_iter);
 	color = generate_color(iter, max_iter);
 	put_pixel(temp[0], temp[1], color);
@@ -45,7 +45,7 @@ void	draw_julia(int x, int y, int max_iter)
 
 	temp[0] = x;
 	temp[1] = y;
-	db()->z = screen_to_complex(temp[0], temp[1], db()->min_re, db()->max_re, db()->min_im, db()->max_im);
+	db()->z = screen_to_complex(temp[0], temp[1]);
 	iter = iterations(db()->z, db()->c, max_iter);
 	color = generate_color(iter, max_iter);
 	put_pixel(temp[0], temp[1], color);

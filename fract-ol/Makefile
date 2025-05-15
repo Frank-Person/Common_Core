@@ -15,7 +15,7 @@ SRCS = src/fractol.c src/graphics.c src/complex_utils.c src/errors.c src/fractal
 OBJ_DIR = build
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -Ofast
 LIBMLX = -Llib/minilibx-linux -lmlx -lXext -lX11 -lm
 INCLUDE = -Ilib/minilibx-linux -Ilib
 

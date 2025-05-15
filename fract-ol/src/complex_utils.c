@@ -47,12 +47,14 @@ t_complex	square_complex(t_complex z)
 	return (result);
 }
 
-t_complex	screen_to_complex(int x, int y, double min_re, double max_re, double min_im, double max_im)
+t_complex	screen_to_complex(int x, int y)
 {
+	t_data		*dt;
 	t_complex	result;
 
-	result.re = min_re + (x / (double)WIDTH) * (max_re - min_re);
-	result.im = max_im - (y / (double)HEIGHT) * (max_im - min_im);
+	dt = db();
+	result.re = dt->min_re + (x / (double)WIDTH) * (dt->max_re - dt->min_re);
+	result.im = dt->max_im - (y / (double)HEIGHT) * (dt->max_im - dt->min_im);
 	return (result);
 }
 

@@ -19,29 +19,15 @@ static int	  move(int key)
 
 	move_x = db()->view_width * 0.05;
 	move_y = db()->view_heigth * 0.05;
-	if (key == XK_s)
+	if (key == XK_Down && db()->offset_y > ((db()->view_heigth / 2) * -1))
 		db()->offset_y -= move_y;
-	else if (key == XK_w)
+	else if (key == XK_Up && db()->offset_y < (db()->view_heigth / 2))
 		db()->offset_y += move_y;
-	else if (key == XK_a)
+	else if (key == XK_Left && db()->offset_x > ((db()->view_width / 2) * -1))
 		db()->offset_x -= move_x;
-	else if (key == XK_d)
+	else if (key == XK_Right && db()->offset_x < (db()->view_width / 2))
 		db()->offset_x += move_x;
 	set_scale();
-	render_fractal(db()->max_iter, db()->draw_fractal);
-	return (0);
-}
-
-static int	  iter_julia(int key)
-{
-	if (key == XK_Down)
-		db()->c.im -= 0.01;
-	else if (key == XK_Up)
-		db()->c.im += 0.01;
-	else if (key == XK_Left)
-		db()->c.re -= 0.01;
-	else if (key == XK_Right)
-		db()->c.re += 0.01;
 	render_fractal(db()->max_iter, db()->draw_fractal);
 	return (0);
 }
@@ -49,9 +35,9 @@ static int	  iter_julia(int key)
 static int	  max_iter(int key)
 {
 	if (key == XK_plus)
-		db()->max_iter += (1 + db()->zoom_factor);
+		db()->max_iter += 1;
 	else if (key == XK_minus && db()->max_iter > 0)
-		db()->max_iter -= (1 + db()->zoom_factor);
+		db()->max_iter -= 1;
 	render_fractal(db()->max_iter, db()->draw_fractal);
 	return (0);
 }
@@ -84,19 +70,21 @@ static int	  change_fractal(int key)
 int			handle_key(int key, void *unused)
 {
 	(void)unused;
-	if (key == XK_s || key == XK_w || key == XK_a || key == XK_d)
-		return (move(key));
-	else if (db()->type == 'j' && (key == XK_Down || key == XK_Up || key == XK_Left || key == XK_Right))
-		return (iter_julia(key));
+	if (key == XK_Down || key == XK_Up || key == XK_Left || key == XK_Right)
+		move(key);
 	else if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)
-		return (rgb(key));
+		rgb(key);
 	else if (key == XK_m || key == XK_j)
-		return (change_fractal(key));
+		change_fractal(key);
 	else if (key == XK_plus || key == XK_minus)
-		return  (max_iter(key));
+		max_iter(key);
 	else if (key == XK_r)
-		return (reset());
+		reset();
 	else if (key == XK_Escape)
-		exit(close_window());
+		close_window();
+	else if (key == XK_z && db()->zoom_state == 0)
+		db()->zoom_state = 1;
+	else if (key == XK_z && db()->zoom_state == 1)
+		db()->zoom_state = 0;
 	return (0);
 }

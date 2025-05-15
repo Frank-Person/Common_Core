@@ -62,7 +62,6 @@ typedef struct s_data
 	double		aspect_ratio;
 	double		view_width;
 	double		view_heigth;
-	double		zoom_factor;
 	double		min_re;
 	double		max_re;
 	double		min_im;
@@ -74,6 +73,7 @@ typedef struct s_data
 	/* Julia info */
 	double		start_re;
 	double		start_im;
+	int			zoom_state;
 
 	/* Complex numbers */
 	t_complex	z;
@@ -88,11 +88,12 @@ void	  draw_julia(int x, int y, int max_iter);
 void	  render_fractal(int max_iter, void (*draw)(int, int, int));
 void	  parse_fractal(char *str);
 void	  parsing(int ac, char **av);
+void	  close_window(void);
 int		  x_close(void);
 int		  rgb(int key);
-int		  handle_mouse(int code, int x, int y, void *param);
+int		  handle_mouse(int code, int x, int y, void *unused);
+int		  mouse_iter(int x, int y, void *unused);
 int		  reset(void);
-int		  close_window(void);
 int		  ft_strcmp(char *s1, char *s2);
 int		  generate_color(int iter, int max_iter);
 int		  malloc_error(void);
@@ -106,7 +107,7 @@ t_data	  *db(void);
 t_complex new_complex(double re, double im);
 t_complex add_complex(t_complex z, t_complex c);
 t_complex square_complex(t_complex z);
-t_complex screen_to_complex(int x, int y, double min_re, double max_re, double min_im, double max_im);
+t_complex screen_to_complex(int x, int y);
 double	  magnitude_squared(t_complex z);
 double	  parse_complex(char *str);
 

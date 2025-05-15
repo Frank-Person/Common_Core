@@ -54,6 +54,7 @@ int	  reset(void)
 	dt->rgb[0] = 9.0;
 	dt->rgb[1] = 15.0;
 	dt->rgb[2] = 8.5;
+	dt->zoom_state = 0;
 	set_scale();
 	if (dt->type == 'j')
 		dt->c = new_complex(dt->start_re, dt->start_im);
@@ -63,14 +64,22 @@ int	  reset(void)
 
 int	  x_close(void)
 {
-	return (exit(close_window()), 0);
+	return (close_window(), 0);
 }
 
-int	  close_window(void)
+void  close_window(void)
 {
-	mlx_clear_window(db()->mlx, db()->win);
-	mlx_destroy_display(db()->mlx);
+	if (db()->img)
+		mlx_destroy_image(db()->mlx, db()->img);
+	if (db()->win)
+		mlx_clear_window(db()->mlx, db()->win);
+	if (db()->win)
+		mlx_destroy_window(db()->mlx, db()->win);
+	if (db()->mlx)
+		mlx_destroy_display(db()->mlx);
+	if (db()->mlx)
+		mlx_loop_end(db()->mlx);
 	free(db()->mlx);
-	return (0);
+	exit(0);
 }
 
