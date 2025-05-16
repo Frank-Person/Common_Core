@@ -53,8 +53,8 @@ t_complex	screen_to_complex(int x, int y)
 	t_complex	result;
 
 	dt = db();
-	result.re = dt->min_re + (x / (double)WIDTH) * (dt->max_re - dt->min_re);
-	result.im = dt->max_im - (y / (double)HEIGHT) * (dt->max_im - dt->min_im);
+	result.re = dt->min_re + (x / (double)dt->win_w) * (dt->max_re - dt->min_re);
+	result.im = dt->max_im - (y / (double)dt->win_h) * (dt->max_im - dt->min_im);
 	return (result);
 }
 

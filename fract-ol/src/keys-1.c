@@ -16,16 +16,20 @@ static int	  move(int key)
 {
 	double	move_x;
 	double	move_y;
+	double	x;
+	double	y;
 
-	move_x = db()->view_width * 0.05;
-	move_y = db()->view_heigth * 0.05;
-	if (key == XK_Down && db()->offset_y > ((db()->view_heigth / 2) * -1))
+	move_x = (db()->view_width * 0.05) / db()->zoom;
+	move_y = (db()->view_heigth * 0.05) / db()->zoom;
+	x = db()->offset_x;
+	y = db()->offset_y;
+	if (key == 'D' && check_next_pos(x, y - move_y) <= 4)
 		db()->offset_y -= move_y;
-	else if (key == XK_Up && db()->offset_y < (db()->view_heigth / 2))
+	else if (key == 'U' && check_next_pos(x, y + move_y) <= 4)
 		db()->offset_y += move_y;
-	else if (key == XK_Left && db()->offset_x > ((db()->view_width / 2) * -1))
+	else if (key == 'L' && check_next_pos(x - move_x, y) <= 4)
 		db()->offset_x -= move_x;
-	else if (key == XK_Right && db()->offset_x < (db()->view_width / 2))
+	else if (key == 'R' && check_next_pos(x + move_x, y) <= 4)
 		db()->offset_x += move_x;
 	set_scale();
 	render_fractal(db()->max_iter, db()->draw_fractal);
@@ -55,14 +59,13 @@ static int	  change_fractal(int key)
 		db()->type = 'j';
 	}
 
-	if (!db()->start_re && !db()->start_im && db()->type == 'j')
+	if (!db()->start.re && !db()->start.im && db()->type == 'j')
 	{
-		db()->start_re = 0.355;
-		db()->start_im = 0.355;
-		db()->c = new_complex(db()->start_re, db()->start_im);
+		db()->start = new_complex(0.355, 0.355);
+		db()->c = db()->start;
 	}
 	else if (db()->type == 'j')
-		db()->c = new_complex(db()->start_re, db()->start_im);
+		db()->c = new_complex(db()->start.re, db()->start.im);
 	render_fractal(db()->max_iter,db()->draw_fractal);
 	return (0);
 }
@@ -70,9 +73,15 @@ static int	  change_fractal(int key)
 int			handle_key(int key, void *unused)
 {
 	(void)unused;
-	if (key == XK_Down || key == XK_Up || key == XK_Left || key == XK_Right)
-		move(key);
-	else if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)
+	if (key == XK_Down || key == XK_s)
+		move('D');
+	else if (key == XK_Up || key == XK_w)
+		move('U');
+	else if (key == XK_Left || key == XK_a)
+		move('L');
+	else if (key == XK_Right || key == XK_d)
+		move('R');
+	else if (key >= XK_1 && key <= XK_5)
 		rgb(key);
 	else if (key == XK_m || key == XK_j)
 		change_fractal(key);

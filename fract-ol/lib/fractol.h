@@ -14,7 +14,7 @@
 # define FRACTOL_H
 
 # define WIDTH 800
-# define HEIGHT 800
+# define HEIGTH 800
 # define MAX_ITER 1
 # define BLACK 0x000000
 # define LNG_MAX 9223372036854775807L
@@ -44,6 +44,8 @@ typedef struct s_data
 	/* MLX */
 	void		*mlx;
 	void		*win;
+	int			win_w;
+	int			win_h;
 
 	/* Image */
 	void		*img;
@@ -53,7 +55,7 @@ typedef struct s_data
 	int			endian;
 
 	/* Colors (RGB) */
-	double		rgb[3];
+	double		rgb;
 
 	/* Fractal info */
 	double		zoom;
@@ -71,8 +73,7 @@ typedef struct s_data
 	void		(*draw_fractal)(int x, int y, int max_iter);
 
 	/* Julia info */
-	double		start_re;
-	double		start_im;
+	t_complex	start;
 	int			zoom_state;
 
 	/* Complex numbers */
@@ -86,7 +87,7 @@ void	  put_pixel(int x, int y, int color);
 void	  draw_mandelbrot(int x, int y, int max_iter);
 void	  draw_julia(int x, int y, int max_iter);
 void	  render_fractal(int max_iter, void (*draw)(int, int, int));
-void	  parse_fractal(char *str);
+void	  parse_fractal(int ac, char **av);
 void	  parsing(int ac, char **av);
 void	  close_window(void);
 int		  x_close(void);
@@ -102,7 +103,7 @@ int		  img_malloc_error(void);
 int		  input_error(void);
 int		  handle_key(int key, void *param);
 int		  iterations(t_complex z, t_complex c, int max_iter);
-long	  parse_iter(char *str);
+long	  parse_input(char *str);
 t_data	  *db(void);
 t_complex new_complex(double re, double im);
 t_complex add_complex(t_complex z, t_complex c);
@@ -110,5 +111,6 @@ t_complex square_complex(t_complex z);
 t_complex screen_to_complex(int x, int y);
 double	  magnitude_squared(t_complex z);
 double	  parse_complex(char *str);
+double	check_next_pos(int x, int y);
 
 #endif

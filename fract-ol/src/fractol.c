@@ -21,7 +21,7 @@ t_data	*db(void)
 
 int	main(int ac, char **av)
 {
-	if (ac > 1 && ac < 6)
+	if (ac > 1 && ac < 8)
 	{
 		parsing(ac, av);
 		init_fractol();

@@ -12,6 +12,12 @@
 
 #include "../lib/fractol.h"
 
+static void	set_resolution(int width, int heigth)
+{
+	db()->win_w = width;
+	db()->win_h = heigth;
+}
+
 double	parse_complex(char *str)
 {
 	double	sgn;
@@ -39,35 +45,48 @@ double	parse_complex(char *str)
 	return (num * sgn);
 }
 
-long  parse_iter(char *str)
+long  parse_input(char *str)
 {
-	long	sgn;
 	long	num;
 
 	num = 0;
 	while (*str && (*str == ' ' || (*str >= '\t' && *str <= '\r')))
 		str++;
-	sgn = (*str != '-') - (*str == '-');
-	if (*str && (*str == '+' || *str == '-'))
+	if (*str && *str == '+')
 		str++;
+	else if (*str && *str == '-')
+		exit(input_error());
 	while (*str && (*str >= '0' && *str <= '9') && (num <= LNG_MAX && num >= LNG_MIN))
 		num = (num * 10) + (*str++ - '0');
 	if (num > LNG_MAX || num < LNG_MIN || *str != '\0')
 		exit(input_error());
-	return (num * sgn);
+	return (num);
 }
 
-void  parse_fractal(char *str)
+void  parse_fractal(int ac, char **av)
 {
-	if (ft_strcmp(str, "mandelbrot") == 0)
+	if (ft_strcmp(av[1], "mandelbrot") == 0 && ac > 1 && ac < 6)
 	{
 		db()->draw_fractal = &draw_mandelbrot;
 		db()->type = 'm';
+		if (ac > 2)
+			db()->max_iter = parse_input(av[2]);
+		if (ac > 3)
+			set_resolution(parse_input(av[3]), parse_input(av[4]));
 	}
-	else if (ft_strcmp(str, "julia") == 0)
+	else if (ft_strcmp(av[1], "julia") == 0 && ac > 1 && ac < 8)
 	{
 		db()->draw_fractal = &draw_julia;
 		db()->type = 'j';
+		if (ac > 2)
+			db()->max_iter = parse_input(av[2]);
+		if (ac > 3)
+			set_resolution(parse_input(av[3]), parse_input(av[4]));
+		if (ac > 5)
+		{
+			db()->c = new_complex(parse_complex(av[5]), parse_complex(av[6]));
+			db()->start = db()->c;
+		} 
 	}
 	else
 		exit(input_error());
@@ -77,24 +96,10 @@ void  parsing(int ac, char **av)
 {
 	t_data	*dt;
 
-	dt = db();
-	parse_fractal(av[1]);
-	if (ac == 3)
-		dt->max_iter = parse_iter(av[2]);
-	else if (ac == 5)
-		dt->max_iter = parse_iter(av[4]);
-	else
+	dt = db();	
+	parse_fractal(ac, av);
+	if (!dt->max_iter)
 		dt->max_iter = MAX_ITER;
-	if (dt->type == 'j' && ac > 3)
-	{
-		dt->start_re = parse_complex(av[2]);
-		dt->start_im = parse_complex(av[3]);
-		dt->c = new_complex(dt->start_re, dt->start_im);
-	}
-	else
-	{
-		dt->start_re = 0.355;
-		dt->start_im = 0.355;
-		dt->c = new_complex(dt->start_re, dt->start_im);
-	}
+	if (!dt->win_h && !dt->win_w)
+		set_resolution(WIDTH, HEIGTH);
 }

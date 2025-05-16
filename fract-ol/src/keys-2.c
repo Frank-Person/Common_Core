@@ -15,29 +15,16 @@
 int	  rgb(int key)
 {
 	if (key == XK_1)
-	{
-		db()->rgb[0] = 4.0;
-		db()->rgb[1] = 12.0;
-		db()->rgb[2] = 20.0;
-	}
+		db()->rgb = 150000000;
 	else if (key == XK_2)
-	{
-		db()->rgb[0] = 15.0;
-		db()->rgb[1] = 8.0;
-		db()->rgb[2] = 3.0;
-	}
+		db()->rgb = 100000000;
 	else if (key == XK_3)
-	{
-		db()->rgb[0] = 3.0;
-		db()->rgb[1] = 9.0;
-		db()->rgb[2] = 18.0;
-	}
+		db()->rgb = 50000000;
 	else if (key == XK_4)
-	{
-		db()->rgb[0] = 12.0;
-		db()->rgb[1] = 14.0;
-		db()->rgb[2] = 8.0;
-	}
+		db()->rgb = 25000000;
+	else if (key == XK_5)
+		db()->rgb = 12500000;
+	db()->max_iter = 1;
 	render_fractal(db()->max_iter, db()->draw_fractal);
 	return (0);
 }
@@ -51,13 +38,11 @@ int	  reset(void)
 	dt->max_iter = 1;
 	dt->offset_x = 0.0;
 	dt->offset_y = 0.0;
-	dt->rgb[0] = 9.0;
-	dt->rgb[1] = 15.0;
-	dt->rgb[2] = 8.5;
+	dt->rgb = 6250000;
 	dt->zoom_state = 0;
 	set_scale();
 	if (dt->type == 'j')
-		dt->c = new_complex(dt->start_re, dt->start_im);
+		dt->c = new_complex(dt->start.re, dt->start.im);
 	render_fractal(dt->max_iter, dt->draw_fractal);
 	return (0);
 }
