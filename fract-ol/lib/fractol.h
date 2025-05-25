@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 16:14:35 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/12 18:38:38 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:08:00 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define HEIGTH 800
 # define MAX_ITER 1
 # define BLACK 0x000000
+# define WHITE 0xFFFFFF
 # define LNG_MAX 9223372036854775807L
 # define LNG_MIN (-9223372036854775807L - 1)
 # define DBL_MAX 1.7976931348623157e+308
@@ -53,9 +54,10 @@ typedef struct s_data
 	int			bpp;
 	int			line_len;
 	int			endian;
+	int			show_controls;
 
 	/* Colors (RGB) */
-	double		rgb;
+	int		  rgb[3];
 
 	/* Fractal info */
 	double		zoom;
@@ -86,7 +88,9 @@ void	  init_fractol(void);
 void	  put_pixel(int x, int y, int color);
 void	  draw_mandelbrot(int x, int y, int max_iter);
 void	  draw_julia(int x, int y, int max_iter);
+void	  draw_burning(int x, int y, int max_iter);
 void	  render_fractal(int max_iter, void (*draw)(int, int, int));
+void	  show_controls(void *mlx, void *win, int x, int y);
 void	  parse_fractal(int ac, char **av);
 void	  parsing(int ac, char **av);
 void	  close_window(void);
@@ -111,6 +115,6 @@ t_complex square_complex(t_complex z);
 t_complex screen_to_complex(int x, int y);
 double	  magnitude_squared(t_complex z);
 double	  parse_complex(char *str);
-double	check_next_pos(int x, int y);
+double	  check_next_pos(int x, int y);
 
 #endif

@@ -47,8 +47,8 @@ int			handle_mouse(int code, int x, int y, void *unused)
 {
 	(void)unused;
 	if (code == SCRL_UP)
-		zoom(1.025, x, y);
+		zoom(1.05, x, y);
 	else if (code == SCRL_DW && db()->zoom * 0.975 > 0.74)
-		zoom(0.975, x, y);
+		zoom(0.95, x, y);
 	return (0);
 }

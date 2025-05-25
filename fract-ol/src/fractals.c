@@ -18,7 +18,11 @@ int		iterations(t_complex z, t_complex c, int max_iter)
 
 	iter = -1;
 	while (magnitude_squared(z) <= 4 && ++iter < max_iter)
+	{
+		if (db()->type == 'b')
+			z = new_complex(fabs(z.re), -(fabs(z.im)));
 		z = add_complex(square_complex(z), c);
+	}
 	return (iter);
 }
 
@@ -46,6 +50,21 @@ void	draw_julia(int x, int y, int max_iter)
 	temp[0] = x;
 	temp[1] = y;
 	db()->z = screen_to_complex(temp[0], temp[1]);
+	iter = iterations(db()->z, db()->c, max_iter);
+	color = generate_color(iter, max_iter);
+	put_pixel(temp[0], temp[1], color);
+}
+
+void	draw_burning(int x, int y, int max_iter)
+{
+	int	  iter;
+	int	  color;
+	int	  temp[2];
+
+	temp[0] = x;
+	temp[1] = y;
+	db()->z = new_complex(0, 0);
+	db()->c = screen_to_complex(temp[0], temp[1]);
 	iter = iterations(db()->z, db()->c, max_iter);
 	color = generate_color(iter, max_iter);
 	put_pixel(temp[0], temp[1], color);

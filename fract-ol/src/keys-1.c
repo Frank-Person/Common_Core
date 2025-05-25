@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 16:20:13 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/06 18:59:13 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/19 17:47:34 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static int	  move(int key)
 {
+	double	move_speed;
 	double	move_x;
 	double	move_y;
 	double	x;
 	double	y;
 
-	move_x = (db()->view_width * 0.05) / db()->zoom;
-	move_y = (db()->view_heigth * 0.05) / db()->zoom;
+	move_speed = 0.5 / db()->zoom;
+	move_x = move_speed * (db()->max_re - db()->min_re);
+	move_y = move_speed * (db()->max_im - db()->min_im);
 	x = db()->offset_x;
 	y = db()->offset_y;
 	if (key == 'D' && check_next_pos(x, y - move_y) <= 4)
@@ -58,6 +60,11 @@ static int	  change_fractal(int key)
 		db()->draw_fractal = &draw_julia;
 		db()->type = 'j';
 	}
+	else if (key == XK_b)
+	{
+		db()->draw_fractal = &draw_burning;
+		db()->type = 'b';
+	}
 
 	if (!db()->start.re && !db()->start.im && db()->type == 'j')
 	{
@@ -81,9 +88,9 @@ int			handle_key(int key, void *unused)
 		move('L');
 	else if (key == XK_Right || key == XK_d)
 		move('R');
-	else if (key >= XK_1 && key <= XK_5)
+	else if ((key >= XK_1 && key <= XK_3) || key == XK_x)
 		rgb(key);
-	else if (key == XK_m || key == XK_j)
+	else if (key == XK_m || key == XK_j || key == XK_b)
 		change_fractal(key);
 	else if (key == XK_plus || key == XK_minus)
 		max_iter(key);
@@ -91,9 +98,9 @@ int			handle_key(int key, void *unused)
 		reset();
 	else if (key == XK_Escape)
 		close_window();
-	else if (key == XK_z && db()->zoom_state == 0)
-		db()->zoom_state = 1;
-	else if (key == XK_z && db()->zoom_state == 1)
-		db()->zoom_state = 0;
+	else if (key == XK_z)
+		db()->zoom_state *= -1;
+	else if (key == XK_i)
+		db()->show_controls *= -1;
 	return (0);
 }

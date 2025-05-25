@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 11:52:43 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/12 18:41:20 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:12:23 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ void	init_fractol(void)
 		dt->start = new_complex(0.355, 0.355);
 	dt->c = dt->start;
 	dt->zoom = 0.75;
-	dt->rgb = 6250000;
+	dt->zoom_state = -1;
+	dt->show_controls = 1;
+	dt->rgb[0] = 255;
+	dt->rgb[1] = 255;
+	dt->rgb[2] = 255;
 	set_scale();
 }
 
@@ -71,7 +75,7 @@ void	render_fractal(int max_iter, void (*draw)(int, int, int))
 		mlx_destroy_image(db()->mlx, db()->img);
 	db()->img = mlx_new_image(db()->mlx, db()->win_w, db()->win_h);
 	if (!db()->img)
-		exit(img_malloc_error());
+		exit(img_malloc_error());	
 	pos[0] = -1;
 	while (++pos[0] < db()->win_h)
 	{
@@ -80,25 +84,23 @@ void	render_fractal(int max_iter, void (*draw)(int, int, int))
 			draw(pos[1], pos[0], max_iter);
 	}
 	mlx_put_image_to_window(db()->mlx, db()->win, db()->img, 0, 0);
-
+	if (db()->show_controls == 1)
+		show_controls(db()->mlx, db()->win, 20, 20);	
 }
 
 int	  generate_color(int iter, int max_iter)
 {
-	// double	*rgb;
-	// double	t;
-	// int		r;
-	// int		g;
-	// int		b;
-	// int		color;
-	//
-	// rgb = db()->rgb;
+	double	t;
+	int		*rgb;	
+	int		color;
+
+	rgb = db()->rgb;
 	if (iter == max_iter)
 		return (BLACK);
-	// t = (double)iter / max_iter;
-	// r = (int)(rgb[0] * (1 - t) * t * t * t * 255);
-	// g = (int)(rgb[1] * (1 - t) * (1 - t) * t * t * 255);
-	// b = (int)(rgb[2] * (1 - t) * (1 - t) * (1 - t) * t * 255);
-	// color = (r << 16) | (g << 8) | b;
-	return (db()->rgb * iter / max_iter);
+	t = (double)iter / max_iter;
+	color = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+	if (t > 0.005)
+		return (color / t);
+	else
+		return (color * t);;
 }

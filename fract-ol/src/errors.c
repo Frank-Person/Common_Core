@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 20:03:41 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/03 20:59:08 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:08:58 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ int	  img_malloc_error(void)
 
 int	  input_error(void)
 {
-	perror("Input Error!\n");
+    write(2, "Error: Invalid input\n", 22);
+    write(2, "Usage: ./fractol <fractal_name> [max_iter] [width height] {re im}\n", 67);
+    write(2, "Available fractals:\n", 21);
+    write(2, "  - mandelbrot\n", 16);
+    write(2, "  - burningShip\n", 17);
+    write(2, "  - julia {Special case for Julia set}\n", 40);
+    write(2, "Examples:\n", 11);
+    write(2, "  ./fractol mandelbrot 1000 800 600\n", 37);
+    write(2, "  ./fractol burningShip 500 1024 768\n", 38);
+    write(2, "  ./fractol julia 1000 800 600 -0.8 0.156\n", 43);
 	return (1);
 }

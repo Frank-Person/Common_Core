@@ -74,6 +74,15 @@ void  parse_fractal(int ac, char **av)
 		if (ac > 3)
 			set_resolution(parse_input(av[3]), parse_input(av[4]));
 	}
+	else if (ft_strcmp(av[1], "burning") == 0 && ac > 1 && ac < 6)
+	{
+		db()->draw_fractal = &draw_burning;
+		db()->type = 'b';
+		if (ac > 2)
+			db()->max_iter = parse_input(av[2]);
+		if (ac > 3)
+			set_resolution(parse_input(av[3]), parse_input(av[4]));
+	}
 	else if (ft_strcmp(av[1], "julia") == 0 && ac > 1 && ac < 8)
 	{
 		db()->draw_fractal = &draw_julia;
@@ -83,10 +92,7 @@ void  parse_fractal(int ac, char **av)
 		if (ac > 3)
 			set_resolution(parse_input(av[3]), parse_input(av[4]));
 		if (ac > 5)
-		{
-			db()->c = new_complex(parse_complex(av[5]), parse_complex(av[6]));
-			db()->start = db()->c;
-		} 
+			db()->start = new_complex(parse_complex(av[5]), parse_complex(av[6]));
 	}
 	else
 		exit(input_error());

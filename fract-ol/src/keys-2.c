@@ -6,7 +6,7 @@
 /*   By: mrapp-he <mrapp-he@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:51:22 by mrapp-he          #+#    #+#             */
-/*   Updated: 2025/05/12 18:37:59 by mrapp-he         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:10:16 by mrapp-he         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,32 @@
 
 int	  rgb(int key)
 {
+	int	  color;
+
 	if (key == XK_1)
-		db()->rgb = 150000000;
+	{
+		if (db()->rgb[0] == 255)
+			db()->rgb[0] = -1;
+		db()->rgb[0] += 1;
+	}
 	else if (key == XK_2)
-		db()->rgb = 100000000;
+	{
+		if (db()->rgb[1] == 255)
+			db()->rgb[1] = -1;
+		db()->rgb[1] += 1;
+	}
 	else if (key == XK_3)
-		db()->rgb = 50000000;
-	else if (key == XK_4)
-		db()->rgb = 25000000;
-	else if (key == XK_5)
-		db()->rgb = 12500000;
-	db()->max_iter = 1;
+	{
+		if (db()->rgb[2] == 255)
+			db()->rgb[2] = -1;
+		db()->rgb[2] += 1;
+	}
+	else if (key == XK_x)
+	{
+		color = (db()->rgb[0] << 16) | (db()->rgb[1] << 8) | db()->rgb[2];
+		printf("Color HEX_CODE = %X\n", color);
+		printf("R[%d] G[%d] B[%d]\n", db()->rgb[0], db()->rgb[1], db()->rgb[2]);
+	}
 	render_fractal(db()->max_iter, db()->draw_fractal);
 	return (0);
 }
@@ -35,10 +50,12 @@ int	  reset(void)
 
 	dt = db();
 	dt->zoom = 0.75;
+	dt->rgb[0] = 255;
+	dt->rgb[1] = 255;
+	dt->rgb[2] = 255;
 	dt->max_iter = 1;
 	dt->offset_x = 0.0;
 	dt->offset_y = 0.0;
-	dt->rgb = 6250000;
 	dt->zoom_state = 0;
 	set_scale();
 	if (dt->type == 'j')
@@ -68,3 +85,23 @@ void  close_window(void)
 	exit(0);
 }
 
+void	show_controls(void *mlx, void *win, int x, int y)
+{
+    mlx_string_put(mlx, win, x, y, WHITE, "CONTROLS:");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "1/2/3 - Increase RGB channels");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "+/- - Increase/Decrease Max Iterations");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "WASD/Arrows - Move View");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "M/J/B - Change Fractal");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "Mouse Scroll - Zoom In/Out");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "Z - Lock/Unlock Julia Set");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "R - Reset Fractal");
+    y += 30;
+    mlx_string_put(mlx, win, x, y, WHITE, "I - Show/Hide Controls");
+}
