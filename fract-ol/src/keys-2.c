@@ -12,10 +12,8 @@
 
 #include "../lib/fractol.h"
 
-int	  rgb(int key)
+int	rgb(int key)
 {
-	int	  color;
-
 	if (key == XK_1)
 	{
 		if (db()->rgb[0] == 255)
@@ -34,17 +32,11 @@ int	  rgb(int key)
 			db()->rgb[2] = -1;
 		db()->rgb[2] += 1;
 	}
-	else if (key == XK_x)
-	{
-		color = (db()->rgb[0] << 16) | (db()->rgb[1] << 8) | db()->rgb[2];
-		printf("Color HEX_CODE = %X\n", color);
-		printf("R[%d] G[%d] B[%d]\n", db()->rgb[0], db()->rgb[1], db()->rgb[2]);
-	}
 	render_fractal(db()->max_iter, db()->draw_fractal);
 	return (0);
 }
 
-int	  reset(void)
+int	reset(void)
 {
 	t_data	*dt;
 
@@ -64,12 +56,12 @@ int	  reset(void)
 	return (0);
 }
 
-int	  x_close(void)
+int	x_close(void)
 {
 	return (close_window(), 0);
 }
 
-void  close_window(void)
+void	close_window(void)
 {
 	if (db()->img)
 		mlx_destroy_image(db()->mlx, db()->img);
@@ -87,21 +79,21 @@ void  close_window(void)
 
 void	show_controls(void *mlx, void *win, int x, int y)
 {
-    mlx_string_put(mlx, win, x, y, WHITE, "CONTROLS:");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "1/2/3 - Increase RGB channels");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "+/- - Increase/Decrease Max Iterations");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "WASD/Arrows - Move View");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "M/J/B - Change Fractal");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "Mouse Scroll - Zoom In/Out");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "Z - Lock/Unlock Julia Set");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "R - Reset Fractal");
-    y += 30;
-    mlx_string_put(mlx, win, x, y, WHITE, "I - Show/Hide Controls");
+	mlx_string_put(mlx, win, x, y, WHITE, "CONTROLS:");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "1/2/3 - Increase RGB channels");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "+/- - Incr/Decr Max Iterations");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "WASD/Arrows - Move View");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "M/J/B - Change Fractal");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "Mouse Scroll - Zoom In/Out");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "Z - Lock/Unlock Julia Set");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "R - Reset Fractal");
+	y += 30;
+	mlx_string_put(mlx, win, x, y, WHITE, "I - Show/Hide Controls");
 }

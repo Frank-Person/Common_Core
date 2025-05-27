@@ -12,9 +12,9 @@
 
 #include "../lib/fractol.h"
 
-int		ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int	  i;
+	int	i;
 
 	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])
@@ -24,7 +24,7 @@ int		ft_strcmp(char *s1, char *s2)
 
 double	check_next_pos(int x, int y)
 {
-	t_complex position;
+	t_complex	position;
 
 	position = new_complex(x, y);
 	return (magnitude_squared(position));

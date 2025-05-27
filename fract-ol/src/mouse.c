@@ -14,9 +14,9 @@
 
 static void	zoom(double zoom_factor, int x, int y)
 {
-	t_data	  *dt;
-	t_complex mouse_before;
-	t_complex mouse_after;
+	t_data		*dt;
+	t_complex	mouse_before;
+	t_complex	mouse_after;
 
 	dt = db();
 	mouse_before = screen_to_complex(x, y);
@@ -31,7 +31,7 @@ static void	zoom(double zoom_factor, int x, int y)
 	render_fractal(db()->max_iter, db()->draw_fractal);
 }
 
-int			mouse_iter(int x, int y, void *unused)
+int	mouse_iter(int x, int y, void *unused)
 {
 	(void)unused;
 	if (db()->type == 'j' && db()->zoom_state == 1)
@@ -43,7 +43,7 @@ int			mouse_iter(int x, int y, void *unused)
 	return (0);
 }
 
-int			handle_mouse(int code, int x, int y, void *unused)
+int	handle_mouse(int code, int x, int y, void *unused)
 {
 	(void)unused;
 	if (code == SCRL_UP)

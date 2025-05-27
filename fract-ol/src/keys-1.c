@@ -12,17 +12,15 @@
 
 #include "../lib/fractol.h"
 
-static int	  move(int key)
+static int	move(int key)
 {
-	double	move_speed;
 	double	move_x;
 	double	move_y;
 	double	x;
 	double	y;
 
-	move_speed = 0.5 / db()->zoom;
-	move_x = move_speed * (db()->max_re - db()->min_re);
-	move_y = move_speed * (db()->max_im - db()->min_im);
+	move_x = 0.05 * (db()->max.re - db()->min.re);
+	move_y = 0.05 * (db()->max.im - db()->min.im);
 	x = db()->offset_x;
 	y = db()->offset_y;
 	if (key == 'D' && check_next_pos(x, y - move_y) <= 4)
@@ -38,7 +36,7 @@ static int	  move(int key)
 	return (0);
 }
 
-static int	  max_iter(int key)
+static int	max_iter(int key)
 {
 	if (key == XK_plus)
 		db()->max_iter += 1;
@@ -48,7 +46,7 @@ static int	  max_iter(int key)
 	return (0);
 }
 
-static int	  change_fractal(int key)
+static int	change_fractal(int key)
 {
 	if (key == XK_m)
 	{
@@ -65,7 +63,6 @@ static int	  change_fractal(int key)
 		db()->draw_fractal = &draw_burning;
 		db()->type = 'b';
 	}
-
 	if (!db()->start.re && !db()->start.im && db()->type == 'j')
 	{
 		db()->start = new_complex(0.355, 0.355);
@@ -73,11 +70,11 @@ static int	  change_fractal(int key)
 	}
 	else if (db()->type == 'j')
 		db()->c = new_complex(db()->start.re, db()->start.im);
-	render_fractal(db()->max_iter,db()->draw_fractal);
+	render_fractal(db()->max_iter, db()->draw_fractal);
 	return (0);
 }
 
-int			handle_key(int key, void *unused)
+int	handle_key(int key, void *unused)
 {
 	(void)unused;
 	if (key == XK_Down || key == XK_s)
@@ -88,7 +85,7 @@ int			handle_key(int key, void *unused)
 		move('L');
 	else if (key == XK_Right || key == XK_d)
 		move('R');
-	else if ((key >= XK_1 && key <= XK_3) || key == XK_x)
+	else if (key >= XK_1 && key <= XK_3)
 		rgb(key);
 	else if (key == XK_m || key == XK_j || key == XK_b)
 		change_fractal(key);

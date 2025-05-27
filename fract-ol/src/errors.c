@@ -12,35 +12,35 @@
 
 #include "../lib/fractol.h"
 
-int	  malloc_error(void)
+int	malloc_error(void)
 {
-	perror("Malloc Error!\n");
+	write(2, "Malloc Error!\n", 14);
 	return (1);
 }
 
-int	  win_malloc_error(void)
+int	win_malloc_error(void)
 {
 	mlx_destroy_display(db()->mlx);
 	return (free(db()->mlx), malloc_error());
 }
 
-int	  img_malloc_error(void)
+int	img_malloc_error(void)
 {
 	mlx_clear_window(db()->mlx, db()->win);
 	return (win_malloc_error());
 }
 
-int	  input_error(void)
+int	input_error(void)
 {
-    write(2, "Error: Invalid input\n", 22);
-    write(2, "Usage: ./fractol <fractal_name> [max_iter] [width height] {re im}\n", 67);
-    write(2, "Available fractals:\n", 21);
-    write(2, "  - mandelbrot\n", 16);
-    write(2, "  - burningShip\n", 17);
-    write(2, "  - julia {Special case for Julia set}\n", 40);
-    write(2, "Examples:\n", 11);
-    write(2, "  ./fractol mandelbrot 1000 800 600\n", 37);
-    write(2, "  ./fractol burningShip 500 1024 768\n", 38);
-    write(2, "  ./fractol julia 1000 800 600 -0.8 0.156\n", 43);
+	write(2, "Error: Invalid input\n", 22);
+	write(2, "Usage: ./fractol <fractal_name> [max_iter] [width height]\n", 59);
+	write(2, "Available fractals:\n", 21);
+	write(2, "  - mandelbrot\n", 16);
+	write(2, "  - burning\n", 13);
+	write(2, "  - julia [regular inputs] {re im}\n", 36);
+	write(2, "Examples:\n", 11);
+	write(2, "  ./fractol mandelbrot 1000 800 600\n", 37);
+	write(2, "  ./fractol burning 500 1024 768\n", 34);
+	write(2, "  ./fractol julia 1000 800 600 -0.8 0.156\n", 43);
 	return (1);
 }

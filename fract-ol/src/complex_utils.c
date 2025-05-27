@@ -50,17 +50,21 @@ t_complex	square_complex(t_complex z)
 t_complex	screen_to_complex(int x, int y)
 {
 	t_data		*dt;
+	t_complex	max;
+	t_complex	min;
 	t_complex	result;
 
 	dt = db();
-	result.re = dt->min_re + (x / (double)dt->win_w) * (dt->max_re - dt->min_re);
-	result.im = dt->max_im - (y / (double)dt->win_h) * (dt->max_im - dt->min_im);
+	max = dt->max;
+	min = dt->min;
+	result.re = min.re + (x / (double)dt->win_w) * (max.re - min.re);
+	result.im = max.im - (y / (double)dt->win_h) * (max.im - min.im);
 	return (result);
 }
 
 double	magnitude_squared(t_complex z)
 {
-	double	  temp[2];
+	double	temp[2];
 
 	temp[0] = z.re;
 	temp[1] = z.im;

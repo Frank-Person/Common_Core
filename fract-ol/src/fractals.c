@@ -12,9 +12,9 @@
 
 #include "../lib/fractol.h"
 
-int		iterations(t_complex z, t_complex c, int max_iter)
+int	iterations(t_complex z, t_complex c, int max_iter)
 {
-	int	  iter;
+	int	iter;
 
 	iter = -1;
 	while (magnitude_squared(z) <= 4 && ++iter < max_iter)
@@ -28,9 +28,9 @@ int		iterations(t_complex z, t_complex c, int max_iter)
 
 void	draw_mandelbrot(int x, int y, int max_iter)
 {
-	int	  iter;
-	int	  color;
-	int	  temp[2];
+	int	iter;
+	int	color;
+	int	temp[2];
 
 	temp[0] = x;
 	temp[1] = y;
@@ -43,9 +43,9 @@ void	draw_mandelbrot(int x, int y, int max_iter)
 
 void	draw_julia(int x, int y, int max_iter)
 {
-	int	  iter;
-	int	  color;
-	int	  temp[2];
+	int	iter;
+	int	color;
+	int	temp[2];
 
 	temp[0] = x;
 	temp[1] = y;
@@ -57,9 +57,9 @@ void	draw_julia(int x, int y, int max_iter)
 
 void	draw_burning(int x, int y, int max_iter)
 {
-	int	  iter;
-	int	  color;
-	int	  temp[2];
+	int	iter;
+	int	color;
+	int	temp[2];
 
 	temp[0] = x;
 	temp[1] = y;

@@ -47,35 +47,37 @@ void	set_scale(void)
 	dt->aspect_ratio = (double)db()->win_w / (double)db()->win_h;
 	dt->view_width = 3.0 / dt->zoom;
 	dt->view_heigth = dt->view_width / dt->aspect_ratio;
-	dt->min_re = dt->offset_x -	(dt->view_width / 2.0);
-	dt->max_re = dt->offset_x + (dt->view_width / 2.0);
-	dt->min_im = dt->offset_y - (dt->view_heigth / 2.0);
-	dt->max_im = dt->offset_y + (dt->view_heigth / 2.0);
+	dt->min.re = dt->offset_x - (dt->view_width / 2.0);
+	dt->max.re = dt->offset_x + (dt->view_width / 2.0);
+	dt->min.im = dt->offset_y - (dt->view_heigth / 2.0);
+	dt->max.im = dt->offset_y + (dt->view_heigth / 2.0);
 }
 
 void	put_pixel(int x, int y, int color)
 {
+	t_data	*dt;
 	char	*pixel;
 	int		pos[2];
 
+	dt = db();
 	pos[0] = x;
 	pos[1] = y;
-	if (pos[0] >= 0 && pos[0] < db()->win_w && pos[1] >= 0 && pos[1] < db()->win_h)
+	if (pos[0] >= 0 && pos[0] < dt->win_w && pos[1] >= 0 && pos[1] < dt->win_h)
 	{
-		pixel = db()->addr + (pos[1] * db()->line_len + pos[0] * (db()->bpp / 8));
+		pixel = dt->addr + (pos[1] * dt->line_len + pos[0] * (dt->bpp / 8));
 		*(unsigned int *)pixel = color;
 	}
 }
 
 void	render_fractal(int max_iter, void (*draw)(int, int, int))
 {
-	int	  pos[2]; //pos[0] = y; pos[1] = x
+	int	pos[2];
 
 	if (db()->img)
 		mlx_destroy_image(db()->mlx, db()->img);
 	db()->img = mlx_new_image(db()->mlx, db()->win_w, db()->win_h);
 	if (!db()->img)
-		exit(img_malloc_error());	
+		exit(img_malloc_error());
 	pos[0] = -1;
 	while (++pos[0] < db()->win_h)
 	{
@@ -85,10 +87,10 @@ void	render_fractal(int max_iter, void (*draw)(int, int, int))
 	}
 	mlx_put_image_to_window(db()->mlx, db()->win, db()->img, 0, 0);
 	if (db()->show_controls == 1)
-		show_controls(db()->mlx, db()->win, 20, 20);	
+		show_controls(db()->mlx, db()->win, 20, 20);
 }
 
-int	  generate_color(int iter, int max_iter)
+int	generate_color(int iter, int max_iter)
 {
 	double	t;
 	int		*rgb;	
@@ -102,5 +104,5 @@ int	  generate_color(int iter, int max_iter)
 	if (t > 0.005)
 		return (color / t);
 	else
-		return (color * t);;
+		return (color * t);
 }
