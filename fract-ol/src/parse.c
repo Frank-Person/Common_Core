@@ -14,6 +14,8 @@
 
 static void	set_resolution(int width, int heigth)
 {
+	if (width == 0 || heigth == 0)
+		exit(input_error());
 	db()->win_w = width;
 	db()->win_h = heigth;
 }
@@ -92,12 +94,14 @@ void	parsing(int ac, char **av)
 	parse_fractal(av[1]);
 	if (ac > 2)
 		db()->max_iter = parse_input(av[2]);
+	else
+		dt->max_iter = MAX_ITER;
 	if (ac > 3)
 		set_resolution(parse_input(av[3]), parse_input(av[4]));
-	if (ac > 5)
-		db()->start = new_complex(parse_complex(av[5]), parse_complex(av[6]));
-	if (!dt->max_iter)
-		dt->max_iter = MAX_ITER;
-	if (!dt->win_h && !dt->win_w)
+	else
 		set_resolution(WIDTH, HEIGTH);
+	if (ac > 5 && dt->type == 'j')
+		db()->start = new_complex(parse_complex(av[5]), parse_complex(av[6]));
+	else
+		exit(input_error());
 }

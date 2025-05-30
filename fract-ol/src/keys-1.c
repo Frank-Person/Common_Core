@@ -38,7 +38,7 @@ static int	move(int key)
 
 static int	max_iter(int key)
 {
-	if (key == XK_plus)
+	if (key == XK_plus || key == XK_equal)
 		db()->max_iter += 1;
 	else if (key == XK_minus && db()->max_iter > 0)
 		db()->max_iter -= 1;
@@ -89,7 +89,7 @@ int	handle_key(int key, void *unused)
 		rgb(key);
 	else if (key == XK_m || key == XK_j || key == XK_b)
 		change_fractal(key);
-	else if (key == XK_plus || key == XK_minus)
+	else if (key == XK_plus || key == XK_minus || key == XK_equal)
 		max_iter(key);
 	else if (key == XK_r)
 		reset();
